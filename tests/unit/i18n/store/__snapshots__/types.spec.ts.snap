@@ -1,0 +1,37 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ActionTypes should not change unexpected 1`] = `
+Object {
+  "getAllTranslations": "getAllTranslations",
+  "getAvailableLocales": "getAvailableLocales",
+  "getLocaleTranslations": "getLocaleTranslations",
+}
+`;
+
+exports[`GetterTypes should not change unexpected 1`] = `
+Object {
+  "applicationToken": "applicationToken",
+  "availableLocales": "availableLocales",
+  "currentLocale": "currentLocale",
+  "error": "error",
+  "locales": "locales",
+}
+`;
+
+exports[`MutationTypes should not change unexpected 1`] = `
+Object {
+  "setAvailableLocales": "setAvailableLocales",
+  "setCurrentLocale": "setCurrentLocale",
+  "setError": "setError",
+  "setLocales": "setLocales",
+  "updateLocales": "updateLocales",
+}
+`;
+
+exports[`RouteTypes should not change unexpected 1`] = `
+Object {
+  "getAllTranslations": "i18n/GetAllIetfTranslations",
+  "getAvailableLocales": "i18n/GetAvailableIetf",
+  "getLocaleTranslations": "i18n/GetIetfTranslations",
+}
+`;

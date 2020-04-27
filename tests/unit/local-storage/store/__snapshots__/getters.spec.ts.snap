@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`getters history should return history as expected 1`] = `
+Object {
+  "lastRoutes": Array [],
+}
+`;
+
+exports[`getters lastRoutes should return lastRoutes as expected 1`] = `Array []`;
+
+exports[`getters settings should return settings as expected 1`] = `
+Object {
+  "isDarkTheme": true,
+}
+`;

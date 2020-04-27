@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`local-storage/mutations setHistory should set history 1`] = `
+Object {
+  "lastRoutes": Array [],
+}
+`;
+
+exports[`local-storage/mutations setSettings should set settings 1`] = `
+Object {
+  "isDarkTheme": true,
+}
+`;
+
+exports[`local-storage/mutations updateIsDarkTheme should update isDarkTheme 1`] = `
+Object {
+  "isDarkTheme": true,
+}
+`;
+
+exports[`local-storage/mutations updateLastRoutes should update last routes 1`] = `
+Object {
+  "lastRoutes": Array [],
+}
+`;

@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`createMutations setAvailableLocales should set available locales 1`] = `
+Object {
+  "0": "de-DE",
+  "1": "en-GB",
+  "2": "es-ES",
+}
+`;

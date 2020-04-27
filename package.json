@@ -1,0 +1,59 @@
+{
+  "name": "vue-library",
+  "version": "20.4.27-0-alpha",
+  "description": "",
+  "author": {
+    "name": "Jonas Schubert",
+    "url": "https://github.com/JonasSchubert",
+    "email": "jonas.schubert.projects@web.de"
+  },
+  "funding": {
+    "type": "paypal",
+    "url": "https://www.paypal.me/GuepardoApps"
+  },
+  "license": "MIT",
+  "scripts": {
+    "lint": "vue-cli-service lint",
+    "pre-push": "npm run lint && npm run test:unit",
+    "test:unit": "vue-cli-service test:unit"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/JonasSchubert/vue-library.git"
+  },
+  "dependencies": {
+    "axios": "^0.19.2",
+    "core-js": "^3.6.5",
+    "vue": "^2.6.11",
+    "vue-class-component": "^7.2.3",
+    "vue-i18n": "^8.17.4",
+    "vue-property-decorator": "^8.4.2",
+    "vuetify": "^2.2.25",
+    "vuex": "^3.3.0"
+  },
+  "devDependencies": {
+    "@types/jest": "^25.2.1",
+    "@typescript-eslint/eslint-plugin": "^2.30.0",
+    "@typescript-eslint/parser": "^2.30.0",
+    "@vue/cli-plugin-babel": "~4.3.1",
+    "@vue/cli-plugin-eslint": "~4.3.1",
+    "@vue/cli-plugin-typescript": "~4.3.1",
+    "@vue/cli-plugin-unit-jest": "~4.3.1",
+    "@vue/cli-plugin-vuex": "~4.3.1",
+    "@vue/cli-service": "~4.3.1",
+    "@vue/eslint-config-airbnb": "^5.0.2",
+    "@vue/eslint-config-typescript": "^5.0.2",
+    "@vue/test-utils": "^1.0.0-beta.33",
+    "eslint": "^6.8.0",
+    "eslint-plugin-import": "^2.20.2",
+    "eslint-plugin-vue": "^6.2.2",
+    "husky": "^4.2.3",
+    "jest-localstorage-mock": "^2.4.0",
+    "sass": "^1.26.5",
+    "sass-loader": "^8.0.2",
+    "typescript": "~3.8.3",
+    "vue-cli-plugin-vuetify": "~2.0.5",
+    "vue-template-compiler": "^2.6.11",
+    "vuetify-loader": "^1.4.3"
+  }
+}

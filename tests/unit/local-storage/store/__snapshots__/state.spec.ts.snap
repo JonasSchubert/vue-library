@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`LocalStorageState should not change unexpected 1`] = `
+Object {
+  "history": Object {
+    "lastRoutes": Array [],
+  },
+  "settings": Object {
+    "isDarkTheme": true,
+  },
+}
+`;

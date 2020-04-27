@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`GetterTypes should not change unexpected 1`] = `
+Object {
+  "isAnythingLoading": "isAnythingLoading",
+}
+`;
+
+exports[`MutationTypes should not change unexpected 1`] = `
+Object {
+  "decreaseRequests": "decreaseRequests",
+  "increaseRequests": "increaseRequests",
+}
+`;

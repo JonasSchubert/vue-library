@@ -1,0 +1,52 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ConfirmDialog methods open should set showDialog to true and set config 1 1`] = `
+Object {
+  "cancel": Object {
+    "icon": "mdi-exit",
+    "iconColor": "accent",
+    "text": "message.cancel",
+    "textColor": "accent",
+  },
+  "confirm": Object {
+    "icon": undefined,
+    "iconColor": undefined,
+    "text": "message.ok",
+    "textColor": "success",
+  },
+}
+`;
+
+exports[`ConfirmDialog methods open should set showDialog to true and set config 1 2`] = `Object {}`;
+
+exports[`ConfirmDialog methods open should set showDialog to true and set config 2 1`] = `
+Object {
+  "cancel": Object {
+    "icon": "mdi-exit",
+    "iconColor": "accent",
+    "text": "message.cancel",
+    "textColor": "accent",
+  },
+  "confirm": Object {
+    "icon": undefined,
+    "iconColor": undefined,
+    "text": "message.ok",
+    "textColor": "success",
+  },
+}
+`;
+
+exports[`ConfirmDialog methods open should set showDialog to true and set config 2 2`] = `Object {}`;
+
+exports[`ConfirmDialog sets the correct default data when mounted 1`] = `
+Object {
+  "confirm": Object {
+    "icon": undefined,
+    "iconColor": undefined,
+    "text": "message.confirm",
+    "textColor": "success",
+  },
+}
+`;
+
+exports[`ConfirmDialog sets the correct default data when mounted 2`] = `Object {}`;

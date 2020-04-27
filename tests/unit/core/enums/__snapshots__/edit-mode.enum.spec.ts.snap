@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EditMode should not change unexpected 1`] = `
+Object {
+  "0": "Null",
+  "1": "Add",
+  "2": "Update",
+  "3": "Delete",
+  "Add": 1,
+  "Delete": 3,
+  "Null": 0,
+  "Update": 2,
+}
+`;

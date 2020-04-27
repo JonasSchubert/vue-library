@@ -1,0 +1,8 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SnackbarEvents should not change unexpected 1`] = `
+Object {
+  "hide": "snackbar.hide",
+  "show": "snackbar.show",
+}
+`;

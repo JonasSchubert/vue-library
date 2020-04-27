@@ -1,0 +1,37 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ActionTypes should not change unexpected 1`] = `
+Object {
+  "loadHistory": "loadHistory",
+  "loadSettings": "loadSettings",
+  "updateIsDarkTheme": "updateIsDarkTheme",
+  "updateLastRoutes": "updateLastRoutes",
+}
+`;
+
+exports[`GetterTypes should not change unexpected 1`] = `
+Object {
+  "history": "history",
+  "isDarkTheme": "isDarkTheme",
+  "lastRoutes": "lastRoutes",
+  "settings": "settings",
+}
+`;
+
+exports[`LocalStorageTypes should not change unexpected 1`] = `
+Object {
+  "history": "i18n-service-history",
+  "settings": "i18n-service-settings",
+}
+`;
+
+exports[`ModuleType should not change unexpected 1`] = `"local-storage"`;
+
+exports[`MutationTypes should not change unexpected 1`] = `
+Object {
+  "setHistory": "setHistory",
+  "setSettings": "setSettings",
+  "updateIsDarkTheme": "updateIsDarkTheme",
+  "updateLastRoutes": "updateLastRoutes",
+}
+`;

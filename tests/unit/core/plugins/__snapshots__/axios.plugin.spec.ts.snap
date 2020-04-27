@@ -1,0 +1,43 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`plugins/axios should set Vue.$http, baseUrl 1`] = `
+Object {
+  "defaults": Object {
+    "baseURL": "http://localhost:15151/vue-library/api/v1/",
+  },
+  "interceptors": Object {
+    "request": Object {
+      "use": [MockFunction] {
+        "calls": Array [
+          Array [
+            [Function],
+            [Function],
+          ],
+        ],
+        "results": Array [
+          Object {
+            "type": "return",
+            "value": undefined,
+          },
+        ],
+      },
+    },
+    "response": Object {
+      "use": [MockFunction] {
+        "calls": Array [
+          Array [
+            [Function],
+            [Function],
+          ],
+        ],
+        "results": Array [
+          Object {
+            "type": "return",
+            "value": undefined,
+          },
+        ],
+      },
+    },
+  },
+}
+`;

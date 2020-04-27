@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`defaultSnackbarConfig should not change unexpected 1`] = `
+Object {
+  "btn": undefined,
+  "color": "primary",
+  "icon": "",
+  "iconColor": "accent",
+  "message": "",
+  "messageParams": Array [],
+  "multiLine": false,
+  "timeout": 3000,
+  "translate": true,
+  "vertical": false,
+}
+`;
