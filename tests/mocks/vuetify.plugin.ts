@@ -10,10 +10,4 @@ Vue.use(Vuetify, {
   }
 });
 
-export const isDarkTheme = true;
-
-export default new Vuetify({
-  theme: {
-    dark: isDarkTheme
-  }
-});
+export default new Vuetify({});

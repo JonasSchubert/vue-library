@@ -1,5 +1,4 @@
 import { ActionTree } from 'vuex';
-import vuetify from '@/core/plugins/vuetify.plugin';
 import {
   LocalStorageHistory, LocalStorageSettings, LocalStorageState
 } from '@/local-storage/models';
@@ -8,10 +7,11 @@ import {
   ActionTypes, GetterTypes, LocalStorageTypes, MutationTypes
 } from '@/local-storage/store/types';
 
-jest.mock('@/core/plugins/vuetify.plugin');
-
 describe('core/local-storage/actions', () => {
+  const vuetify: any = { framework: { theme: { dark: false } } };
+
   beforeEach(() => {
+    vuetify.framework.theme.dark = false;
     localStorage.clear();
     jest.resetAllMocks();
   });
@@ -20,7 +20,7 @@ describe('core/local-storage/actions', () => {
     // TODO try to fix test failing, while it should succeed
     xtest('should load and commit history if data is not null', () => {
       // Arrange
-      const actions: ActionTree<LocalStorageState, LocalStorageState> = createActions<LocalStorageState>();
+      const actions: ActionTree<LocalStorageState, LocalStorageState> = createActions<LocalStorageState>(vuetify);
       const commit = jest.fn();
       const localStorageHistory: LocalStorageHistory = {
         lastRoutes: [
@@ -52,7 +52,7 @@ describe('core/local-storage/actions', () => {
 
     test('should load history, but not commit if data is null', () => {
       // Arrange
-      const actions: ActionTree<LocalStorageState, LocalStorageState> = createActions<LocalStorageState>();
+      const actions: ActionTree<LocalStorageState, LocalStorageState> = createActions<LocalStorageState>(vuetify);
       const commit = jest.fn();
 
       // Act
@@ -69,7 +69,7 @@ describe('core/local-storage/actions', () => {
     // TODO try to fix test failing, while it should succeed
     xtest('should load and commit settings if data is not null', () => {
       // Arrange
-      const actions: ActionTree<LocalStorageState, LocalStorageState> = createActions<LocalStorageState>();
+      const actions: ActionTree<LocalStorageState, LocalStorageState> = createActions<LocalStorageState>(vuetify);
       const commit = jest.fn();
       const localStorageSettings: LocalStorageSettings = {
         isDarkTheme: true
@@ -97,7 +97,7 @@ describe('core/local-storage/actions', () => {
 
     test('should load settings, but not commit if data is null', () => {
       // Arrange
-      const actions: ActionTree<LocalStorageState, LocalStorageState> = createActions<LocalStorageState>();
+      const actions: ActionTree<LocalStorageState, LocalStorageState> = createActions<LocalStorageState>(vuetify);
       const commit = jest.fn();
 
       // Act
@@ -113,7 +113,7 @@ describe('core/local-storage/actions', () => {
   describe(`${ActionTypes.updateIsDarkTheme}`, () => {
     test('should set dark theme on vuetify, commit it to the store and store it in the localstorage', () => {
       // Arrange
-      const actions: ActionTree<LocalStorageState, LocalStorageState> = createActions<LocalStorageState>();
+      const actions: ActionTree<LocalStorageState, LocalStorageState> = createActions<LocalStorageState>(vuetify);
       const commit = jest.fn();
       const getters = {
         [GetterTypes.settings]: { isDarkTheme: true }

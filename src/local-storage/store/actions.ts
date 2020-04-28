@@ -1,5 +1,4 @@
 import { ActionTree } from 'vuex';
-import vuetify from '@/core/plugins/vuetify.plugin';
 import {
   LocalStorageHistory, LocalStorageSettings, LocalStorageState
 } from '../models';
@@ -7,7 +6,7 @@ import {
   ActionTypes, GetterTypes, LocalStorageTypes, MutationTypes
 } from './types';
 
-export const createActions = <T>(): ActionTree<LocalStorageState, T> => ({
+export const createActions = <T>(vuetify: any): ActionTree<LocalStorageState, T> => ({
   [ActionTypes.loadHistory]({ commit }): void {
     const rawHistory: string | null = localStorage.getItem(LocalStorageTypes.history);
     if (rawHistory) {

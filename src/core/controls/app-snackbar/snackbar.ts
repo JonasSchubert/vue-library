@@ -1,4 +1,4 @@
-import { EventBus } from '@/core/bus';
+import { EventBus } from '../../bus';
 import { SnackbarConfig } from './snackbar-config';
 import { SnackbarEvents } from './snackbar-events.enum';
 import { defaultSnackbarConfig } from './snackbar.constants';

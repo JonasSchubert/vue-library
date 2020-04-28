@@ -1,6 +1,17 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`LocalStorageState should not change unexpected 1`] = `
+exports[`LocalStorageState should not change unexpected with isDarkTheme false 1`] = `
+Object {
+  "history": Object {
+    "lastRoutes": Array [],
+  },
+  "settings": Object {
+    "isDarkTheme": false,
+  },
+}
+`;
+
+exports[`LocalStorageState should not change unexpected with isDarkTheme true 1`] = `
 Object {
   "history": Object {
     "lastRoutes": Array [],

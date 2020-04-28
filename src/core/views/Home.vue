@@ -21,7 +21,7 @@ import { mapGetters } from "vuex";
 import {
   GetterTypes as LocaleStorageGetterTypes,
   ModuleType as LocaleStorageModuleType
-} from "@/local-storage/store/types";
+} from "../../local-storage/store/types";
 
 @Component({
   name: "home",

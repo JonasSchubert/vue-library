@@ -1,7 +1,6 @@
 import { VueConstructor } from 'vue/types/umd';
-
-import { controls } from '@/core/controls';
-import { dialogs } from '@/core/dialogs';
+import { controls } from '../controls';
+import { dialogs } from '../dialogs';
 
 export default {
   install(Vue: any): void {

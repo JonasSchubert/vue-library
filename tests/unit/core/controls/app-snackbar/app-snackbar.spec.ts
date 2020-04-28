@@ -3,8 +3,8 @@ import Vue from 'vue';
 import VueI18n from 'vue-i18n';
 import { shallowMount } from '@vue/test-utils';
 import { SnackbarConfig } from '@/core/controls/app-snackbar';
-import vuetify from '@/core/plugins/vuetify.plugin';
 import AppSnackbar from '@/core/controls/app-snackbar/app-snackbar.vue';
+import vuetify from '../../../../mocks/vuetify.plugin';
 
 Vue.use(VueI18n);
 const i18n: VueI18n = new VueI18n({});

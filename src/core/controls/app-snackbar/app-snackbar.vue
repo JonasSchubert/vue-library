@@ -22,7 +22,7 @@
 <script lang="ts">
 import Vue from "vue";
 import { Component } from "vue-property-decorator";
-import { EventBus } from "@/core/bus";
+import { EventBus } from "../../bus";
 import { defaultSnackbarConfig, SnackbarConfig, SnackbarEvents } from "./index";
 
 @Component({

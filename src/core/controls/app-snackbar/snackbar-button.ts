@@ -1,4 +1,4 @@
-import { GaColor } from '@/core/types';
+import { GaColor } from '../../types';
 
 export interface SnackbarButton {
   callback: Function;

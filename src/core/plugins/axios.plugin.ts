@@ -1,13 +1,7 @@
 import { AxiosStatic } from 'axios';
 import { Store } from 'vuex';
-import { BaseState } from '@/core/models';
-import { MutationTypes } from '@/core/store/types';
-
-declare module 'vue/types/vue' {
-  interface VueConstructor {
-    $http: AxiosStatic;
-  }
-}
+import { BaseState } from '../models';
+import { MutationTypes } from '../store/types';
 
 interface AxiosPluginOptions<T extends BaseState> {
   axios: AxiosStatic;

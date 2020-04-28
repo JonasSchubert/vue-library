@@ -1,7 +1,6 @@
-import { isDarkTheme } from '@/core/plugins/vuetify.plugin';
 import { LocalStorageState } from '../models';
 
-export const createLocalStorageState = (): LocalStorageState => ({
+export const createLocalStorageState = (isDarkTheme: boolean): LocalStorageState => ({
   history: {
     lastRoutes: []
   },

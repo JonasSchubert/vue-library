@@ -1,6 +1,6 @@
 import { shallowMount } from '@vue/test-utils';
-import vuetify from '@/core/plugins/vuetify.plugin';
 import AppBarBtn from '@/core/controls/app-bar-btn/app-bar-btn.vue';
+import vuetify from '../../../../mocks/vuetify.plugin';
 
 // helper function that mounts and returns the rendered component
 const getMountedComponent = (Component: any, propsData: any) => shallowMount(Component, {

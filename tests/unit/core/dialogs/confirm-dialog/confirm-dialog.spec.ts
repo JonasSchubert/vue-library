@@ -3,9 +3,8 @@ import Vue from 'vue';
 import VueI18n from 'vue-i18n';
 import { shallowMount } from '@vue/test-utils';
 import { ConfirmDialogConfig } from '@/core/dialogs/confirm-dialog';
-import vuetify from '@/core/plugins/vuetify.plugin';
-
 import ConfirmDialog from '@/core/dialogs/confirm-dialog/confirm-dialog.vue';
+import vuetify from '../../../../mocks/vuetify.plugin';
 
 Vue.use(VueI18n);
 const i18n: VueI18n = new VueI18n({});
