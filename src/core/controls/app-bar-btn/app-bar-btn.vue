@@ -13,7 +13,7 @@ import { Component, Prop } from "vue-property-decorator";
   name: "app-bar-btn"
 })
 export default class AppBarBtn extends Vue {
-  @Prop({ default: false, required: true })
+  @Prop({ default: true, required: false })
   dark?: boolean;
 
   @Prop({ default: "", required: true })
