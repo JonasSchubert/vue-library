@@ -14,11 +14,7 @@ interface AxiosPluginOptions<T extends BaseState> {
   store: Store<T>;
 }
 
-interface AxiosPlugin {
-  install: Function;
-}
-
-export const createAxiosPlugin = <T extends BaseState>(baseUrl: string): AxiosPlugin => ({
+export const createAxiosPlugin = <T extends BaseState>(baseUrl: string): any => ({
   install(Vue: any, { axios, store }: AxiosPluginOptions<T>): void {
     // eslint-disable-next-line no-param-reassign
     axios.defaults.baseURL = baseUrl;
