@@ -23,7 +23,7 @@ import { Component } from "vue-property-decorator";
 import {
   ActionTypes as I18nActionTypes,
   MutationTypes as I18nMutationTypes
-} from "@/i18n/store/types";
+} from "../../../i18n/store/types";
 
 @Component({
   name: "app-locale-chooser"

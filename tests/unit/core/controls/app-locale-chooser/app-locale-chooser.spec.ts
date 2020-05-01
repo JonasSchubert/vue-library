@@ -26,6 +26,17 @@ const getMountedComponent = (Component: any, propsData: any) => shallowMount(Com
 describe('AppLocaleChooser', () => {
   test('renders defined', () => {
     // Assert
-    expect(getMountedComponent(AppLocaleChooser, {}).text()).toBe('message.de-DE (message.de-DE-native)message.es-ES (message.es-ES-native)');
+    expect(getMountedComponent(AppLocaleChooser, {}).html()).toBe(`<v-menu-stub opendelay=\"0\" closedelay=\"0\" contentclass=\"\" maxwidth=\"auto\" nudgebottom=\"0\" nudgeleft=\"0\" nudgeright=\"0\" nudgetop=\"0\" nudgewidth=\"0\" openonclick=\"true\" closeonclick=\"true\" closeoncontentclick=\"true\" maxheight=\"auto\" offsety=\"true\" origin=\"top left\" transition=\"v-menu-transition\">
+  <v-list-stub tag=\"div\" tile=\"true\">
+    <v-list-item-group-stub value=\"0\" activeclass=\"v-item--active\">
+      <v-list-item-stub activeclass=\"\" ripple=\"true\" tag=\"div\">
+        <v-list-item-title-stub>message.de-DE (message.de-DE-native)</v-list-item-title-stub>
+      </v-list-item-stub>
+      <v-list-item-stub activeclass=\"\" ripple=\"true\" tag=\"div\">
+        <v-list-item-title-stub>message.es-ES (message.es-ES-native)</v-list-item-title-stub>
+      </v-list-item-stub>
+    </v-list-item-group-stub>
+  </v-list-stub>
+</v-menu-stub>`);
   });
 });

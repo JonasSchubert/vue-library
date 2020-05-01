@@ -1,24 +1,41 @@
 // Import `shallowMount` from Vue Test Utils and the component being tested
-import Vue from 'vue';
+import { createLocalVue, shallowMount } from '@vue/test-utils';
 import VueI18n from 'vue-i18n';
-import { shallowMount } from '@vue/test-utils';
+import Vuex, { Store } from 'vuex';
 import { SnackbarConfig } from '@/core/controls/app-snackbar';
 import AppSnackbar from '@/core/controls/app-snackbar/app-snackbar.vue';
 import vuetify from '../../../../mocks/vuetify.plugin';
 
-Vue.use(VueI18n);
-const i18n: VueI18n = new VueI18n({});
+const localVue = createLocalVue();
+localVue.use(Vuex);
+localVue.use(VueI18n);
 
-// Mount the component
-const wrapper = shallowMount(AppSnackbar, {
+const i18n = new VueI18n({});
+const store: Store<any> = new Store({});
+
+// helper function that mounts and returns the rendered component
+const getMountedComponent = (Component: any, propsData: any) => shallowMount(Component, {
   i18n,
+  localVue,
+  propsData,
+  store,
   vuetify
 });
 
 describe('AppSnackbar', () => {
+  test('renders defined', () => {
+    // Assert
+    expect(getMountedComponent(AppSnackbar, {}).html()).toBe(`<v-snackbar-stub color=\"primary\" timeout=\"3000\">
+  <!---->
+
+  <v-spacer-stub></v-spacer-stub>
+  <!---->
+</v-snackbar-stub>`);
+  });
+
   test('sets the correct default data when mounted', () => {
     // Assert
-    const defaultData = wrapper.vm.$data;
+    const defaultData = getMountedComponent(AppSnackbar, {}).vm.$data;
     expect(defaultData.btn).toBeUndefined();
     expect(defaultData.color).toBe('primary');
     expect(defaultData.message).toBe('');
@@ -32,6 +49,7 @@ describe('AppSnackbar', () => {
     describe('hide', () => {
       test('should reset $data to initial default value', () => {
         // Arrange
+        const wrapper = getMountedComponent(AppSnackbar, {});
         wrapper.vm.$data.btn = {
           callback: () => ({}),
           color: 'primary',
@@ -71,6 +89,7 @@ describe('AppSnackbar', () => {
       test('should set $data to provided config', () => {
         // Arrange
         jest.useFakeTimers();
+        const wrapper = getMountedComponent(AppSnackbar, {});
         const config: SnackbarConfig = {
           btn: undefined,
           color: 'accent',
