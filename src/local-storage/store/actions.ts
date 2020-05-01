@@ -6,16 +6,16 @@ import {
   ActionTypes, GetterTypes, LocalStorageTypes, MutationTypes
 } from './types';
 
-export const createActions = <T>(vuetify: any): ActionTree<LocalStorageState, T> => ({
+export const createActions = <T>(appName: string, vuetify: any): ActionTree<LocalStorageState, T> => ({
   [ActionTypes.loadHistory]({ commit }): void {
-    const rawHistory: string | null = localStorage.getItem(LocalStorageTypes.history);
+    const rawHistory: string | null = localStorage.getItem(`${appName}${LocalStorageTypes.history}`);
     if (rawHistory) {
       const history: LocalStorageHistory = JSON.parse(rawHistory);
       commit(MutationTypes.setHistory, { history });
     }
   },
   [ActionTypes.loadSettings]({ commit }): void {
-    const rawSettings: string | null = localStorage.getItem(LocalStorageTypes.settings);
+    const rawSettings: string | null = localStorage.getItem(`${appName}${LocalStorageTypes.settings}`);
     if (rawSettings) {
       const settings: LocalStorageSettings = JSON.parse(rawSettings);
       vuetify.framework.theme.dark = settings.isDarkTheme;
@@ -26,7 +26,7 @@ export const createActions = <T>(vuetify: any): ActionTree<LocalStorageState, T>
     vuetify.framework.theme.dark = isDarkTheme;
     commit(MutationTypes.updateIsDarkTheme, { isDarkTheme });
     const settings: LocalStorageSettings = getters[GetterTypes.settings];
-    localStorage.setItem(LocalStorageTypes.settings, JSON.stringify(settings));
+    localStorage.setItem(`${appName}${LocalStorageTypes.settings}`, JSON.stringify(settings));
   },
   [ActionTypes.updateLastRoutes]({ commit, getters }, { newRoute }: { newRoute: any }): void {
     const lastRoutes: any[] = [...getters[GetterTypes.lastRoutes]];
@@ -43,6 +43,6 @@ export const createActions = <T>(vuetify: any): ActionTree<LocalStorageState, T>
     commit(MutationTypes.updateLastRoutes, { lastRoutes });
 
     const history: LocalStorageHistory = getters[GetterTypes.history];
-    localStorage.setItem(LocalStorageTypes.history, JSON.stringify(history));
+    localStorage.setItem(`${appName}${LocalStorageTypes.history}`, JSON.stringify(history));
   }
 });

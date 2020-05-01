@@ -20,8 +20,8 @@ Object {
 
 exports[`LocalStorageTypes should not change unexpected 1`] = `
 Object {
-  "history": "i18n-service-history",
-  "settings": "i18n-service-settings",
+  "history": "-history",
+  "settings": "-settings",
 }
 `;
 

@@ -13,8 +13,8 @@ export const GetterTypes = {
 };
 
 export const LocalStorageTypes = {
-  history: 'i18n-service-history',
-  settings: 'i18n-service-settings'
+  history: '-history',
+  settings: '-settings'
 };
 
 export const ModuleType = 'local-storage';

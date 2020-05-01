@@ -8,6 +8,7 @@ import {
 } from '@/local-storage/store/types';
 
 describe('core/local-storage/actions', () => {
+  const appName = 'unit-tests';
   const vuetify: any = { framework: { theme: { dark: false } } };
 
   beforeEach(() => {
@@ -20,26 +21,26 @@ describe('core/local-storage/actions', () => {
     // TODO try to fix test failing, while it should succeed
     xtest('should load and commit history if data is not null', () => {
       // Arrange
-      const actions: ActionTree<LocalStorageState, LocalStorageState> = createActions<LocalStorageState>(vuetify);
+      const actions: ActionTree<LocalStorageState, LocalStorageState> = createActions<LocalStorageState>(appName, vuetify);
       const commit = jest.fn();
       const localStorageHistory: LocalStorageHistory = {
         lastRoutes: [
           { name: 'start', route: '/' }
         ]
       };
-      localStorage.setItem(LocalStorageTypes.history, JSON.stringify(localStorageHistory));
+      localStorage.setItem(`${appName}${LocalStorageTypes.history}`, JSON.stringify(localStorageHistory));
 
       // Assert
       expect(localStorage.setItem).toHaveBeenCalledTimes(1);
-      expect(localStorage.setItem).toHaveBeenLastCalledWith(LocalStorageTypes.history, JSON.stringify(localStorageHistory));
-      expect(localStorage.__STORE__[LocalStorageTypes.history]).toBe(JSON.stringify(localStorageHistory));
+      expect(localStorage.setItem).toHaveBeenLastCalledWith(`${appName}${LocalStorageTypes.history}`, JSON.stringify(localStorageHistory));
+      expect(localStorage.__STORE__[`${appName}${LocalStorageTypes.history}`]).toBe(JSON.stringify(localStorageHistory));
 
       // Act
       (actions[ActionTypes.loadHistory] as Function)({ commit });
 
       // Assert
       expect(localStorage.getItem).toHaveBeenCalledTimes(1);
-      expect(localStorage.getItem).toHaveBeenLastCalledWith(LocalStorageTypes.history);
+      expect(localStorage.getItem).toHaveBeenLastCalledWith(`${appName}${LocalStorageTypes.history}`);
       expect(commit).toHaveBeenCalledTimes(1);
       expect(commit).toHaveBeenCalledWith(MutationTypes.setHistory, {
         history: {
@@ -52,7 +53,7 @@ describe('core/local-storage/actions', () => {
 
     test('should load history, but not commit if data is null', () => {
       // Arrange
-      const actions: ActionTree<LocalStorageState, LocalStorageState> = createActions<LocalStorageState>(vuetify);
+      const actions: ActionTree<LocalStorageState, LocalStorageState> = createActions<LocalStorageState>(appName, vuetify);
       const commit = jest.fn();
 
       // Act
@@ -60,7 +61,7 @@ describe('core/local-storage/actions', () => {
 
       // Assert
       expect(localStorage.getItem).toHaveBeenCalledTimes(1);
-      expect(localStorage.getItem).toHaveBeenLastCalledWith(LocalStorageTypes.history);
+      expect(localStorage.getItem).toHaveBeenLastCalledWith(`${appName}${LocalStorageTypes.history}`);
       expect(commit).toHaveBeenCalledTimes(0);
     });
   });
@@ -69,24 +70,24 @@ describe('core/local-storage/actions', () => {
     // TODO try to fix test failing, while it should succeed
     xtest('should load and commit settings if data is not null', () => {
       // Arrange
-      const actions: ActionTree<LocalStorageState, LocalStorageState> = createActions<LocalStorageState>(vuetify);
+      const actions: ActionTree<LocalStorageState, LocalStorageState> = createActions<LocalStorageState>(appName, vuetify);
       const commit = jest.fn();
       const localStorageSettings: LocalStorageSettings = {
         isDarkTheme: true
       };
-      localStorage.setItem(LocalStorageTypes.settings, JSON.stringify(localStorageSettings));
+      localStorage.setItem(`${appName}${LocalStorageTypes.settings}`, JSON.stringify(localStorageSettings));
 
       // Assert
       expect(localStorage.setItem).toHaveBeenCalledTimes(1);
-      expect(localStorage.setItem).toHaveBeenLastCalledWith(LocalStorageTypes.settings, JSON.stringify(localStorageSettings));
-      expect(localStorage.__STORE__[LocalStorageTypes.settings]).toBe(JSON.stringify(localStorageSettings));
+      expect(localStorage.setItem).toHaveBeenLastCalledWith(`${appName}${LocalStorageTypes.settings}`, JSON.stringify(localStorageSettings));
+      expect(localStorage.__STORE__[`${appName}${LocalStorageTypes.settings}`]).toBe(JSON.stringify(localStorageSettings));
 
       // Act
       (actions[ActionTypes.loadSettings] as Function)({ commit });
 
       // Assert
       expect(localStorage.getItem).toHaveBeenCalledTimes(1);
-      expect(localStorage.getItem).toHaveBeenLastCalledWith(LocalStorageTypes.settings);
+      expect(localStorage.getItem).toHaveBeenLastCalledWith(`${appName}${LocalStorageTypes.settings}`);
       expect(commit).toHaveBeenCalledTimes(1);
       expect(commit).toHaveBeenCalledWith(MutationTypes.setSettings, {
         settings: {
@@ -97,7 +98,7 @@ describe('core/local-storage/actions', () => {
 
     test('should load settings, but not commit if data is null', () => {
       // Arrange
-      const actions: ActionTree<LocalStorageState, LocalStorageState> = createActions<LocalStorageState>(vuetify);
+      const actions: ActionTree<LocalStorageState, LocalStorageState> = createActions<LocalStorageState>(appName, vuetify);
       const commit = jest.fn();
 
       // Act
@@ -105,7 +106,7 @@ describe('core/local-storage/actions', () => {
 
       // Assert
       expect(localStorage.getItem).toHaveBeenCalledTimes(1);
-      expect(localStorage.getItem).toHaveBeenLastCalledWith(LocalStorageTypes.settings);
+      expect(localStorage.getItem).toHaveBeenLastCalledWith(`${appName}${LocalStorageTypes.settings}`);
       expect(commit).toHaveBeenCalledTimes(0);
     });
   });
@@ -113,7 +114,7 @@ describe('core/local-storage/actions', () => {
   describe(`${ActionTypes.updateIsDarkTheme}`, () => {
     test('should set dark theme on vuetify, commit it to the store and store it in the localstorage', () => {
       // Arrange
-      const actions: ActionTree<LocalStorageState, LocalStorageState> = createActions<LocalStorageState>(vuetify);
+      const actions: ActionTree<LocalStorageState, LocalStorageState> = createActions<LocalStorageState>(appName, vuetify);
       const commit = jest.fn();
       const getters = {
         [GetterTypes.settings]: { isDarkTheme: true }
@@ -128,7 +129,7 @@ describe('core/local-storage/actions', () => {
       expect(commit).toHaveBeenCalledTimes(1);
       expect(commit).toHaveBeenCalledWith(MutationTypes.updateIsDarkTheme, { isDarkTheme: true });
       expect(localStorage.setItem).toHaveBeenCalledTimes(1);
-      expect(localStorage.setItem).toHaveBeenLastCalledWith(LocalStorageTypes.settings, "{\"isDarkTheme\":true}");
+      expect(localStorage.setItem).toHaveBeenLastCalledWith(`${appName}${LocalStorageTypes.settings}`, "{\"isDarkTheme\":true}");
     });
   });
 
