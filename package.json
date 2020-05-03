@@ -15,7 +15,8 @@
   "scripts": {
     "lint": "vue-cli-service lint",
     "pre-push": "npm run lint && npm run test:unit",
-    "test:unit": "vue-cli-service test:unit"
+    "test:unit": "vue-cli-service test:unit",
+    "update-local-version": "@powershell -NoProfile -ExecutionPolicy Unrestricted -Command ./scripts/update-local-version.ps1"
   },
   "repository": {
     "type": "git",

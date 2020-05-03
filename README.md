@@ -12,7 +12,8 @@
 ### NPM Scripts
 
 ```
-npm run lint        // Lints and fixes files
-npm run pre-push    // Runs 'lint' and 'test:unit'
-npm run test:unit   // Run your unit tests
+npm run lint                  // Lints and fixes files
+npm run pre-push              // Runs 'lint' and 'test:unit'
+npm run test:unit             // Run your unit tests
+npm run update-local-version  // Updates the version for this application in this README.md, the package.json and the package-lock.json, stages and commits these files
 ```
