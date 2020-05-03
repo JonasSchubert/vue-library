@@ -30,7 +30,7 @@ import {
 })
 export default class AppLocaleChooser extends Vue {
   get availableLocales() {
-    return Object.keys(this.$store.state.i18n.locales);
+    return this.$store.state.i18n.availableLocales;
   }
 
   get locale() {

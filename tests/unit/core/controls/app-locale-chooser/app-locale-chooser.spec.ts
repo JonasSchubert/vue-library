@@ -11,7 +11,7 @@ localVue.use(VueI18n);
 const i18n = new VueI18n({});
 
 const store: Store<any> = new Store({
-  state: { i18n: { currentLocale: 'de-DE', locales: { 'de-DE': {}, 'es-ES': {} } } }
+  state: { i18n: { availableLocales: ['de-DE', 'es-ES'], currentLocale: 'de-DE', locales: { 'de-DE': {}, 'es-ES': {} } } }
 });
 
 // helper function that mounts and returns the rendered component
