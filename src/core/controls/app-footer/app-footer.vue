@@ -12,7 +12,7 @@
 
     <v-spacer></v-spacer>
 
-    <div>{{ version }}</div>
+    <div>{{ version }} ({{ libVersion }})</div>
   </v-footer>
 </template>
 
@@ -24,6 +24,7 @@ import {
   GetterTypes as LocaleStorageGetterTypes,
   ModuleType as LocaleStorageModuleType
 } from "../../../local-storage/store/types";
+import { version as libVersion } from "../../../../package.json";
 
 @Component({
   name: "app-footer"
@@ -31,6 +32,8 @@ import {
 export default class AppFooter extends Vue {
   @Prop({ default: "", required: true })
   version!: string;
+
+  libVersion: string = libVersion;
 
   get isDarkTheme() {
     return this.$store.getters[

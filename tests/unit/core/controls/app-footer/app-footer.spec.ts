@@ -58,7 +58,7 @@ describe('AppFooter', () => {
           });
         }\" input-value=\"true\" class=\"mt-0\"></v-switch-stub>
   <v-spacer-stub></v-spacer-stub>
-  <div>20.05.01-0</div>
+  <div>20.05.01-0 (20.05.03-1)</div>
 </v-footer-stub>`);
   });
 });
