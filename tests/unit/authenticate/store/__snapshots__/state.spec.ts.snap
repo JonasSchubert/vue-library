@@ -1,0 +1,10 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`createAuthenticateState should not change unexpected 1`] = `
+Object {
+  "error": undefined,
+  "isLoading": false,
+  "token": undefined,
+  "userRoles": Array [],
+}
+`;

@@ -1,0 +1,38 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ActionTypes should not change unexpected 1`] = `
+Object {
+  "login": "login",
+  "logout": "logout",
+  "validateToken": "validate-token",
+}
+`;
+
+exports[`GetterTypes should not change unexpected 1`] = `
+Object {
+  "error": "error",
+  "isAdministrator": "isAdministrator",
+  "isLoading": "isLoading",
+  "isUser": "isUser",
+  "loggedIn": "loggedIn",
+  "token": "token",
+  "userRoles": "userRoles",
+}
+`;
+
+exports[`ModuleType should not change unexpected 1`] = `"authenticate"`;
+
+exports[`MutationTypes should not change unexpected 1`] = `
+Object {
+  "setError": "setError",
+  "setIsLoading": "setIsLoading",
+  "setToken": "setToken",
+  "setUserRoles": "setUserRoles",
+}
+`;
+
+exports[`RouteTypes should not change unexpected 1`] = `
+Object {
+  "authenticate": "authenticate",
+}
+`;

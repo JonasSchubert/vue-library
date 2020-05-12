@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`authenticate/mutations setError should set error 1`] = `
+Object {
+  "message": "message",
+  "name": "name",
+}
+`;
+
+exports[`authenticate/mutations setUserRoles should set userRoles 1`] = `
+Object {
+  "0": 1,
+}
+`;

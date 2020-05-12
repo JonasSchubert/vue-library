@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`authenticate/getters error should return error as expected 1`] = `
+Object {
+  "message": "message",
+  "name": "name",
+}
+`;
+
+exports[`authenticate/getters userRoles should return userRoles as expected 1`] = `
+Object {
+  "0": 2,
+}
+`;
