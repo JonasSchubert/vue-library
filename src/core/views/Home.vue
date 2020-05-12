@@ -5,7 +5,7 @@
     <div class="headline my-2">{{ $t("message.last-used") }}</div>
     <app-bar-btn
       v-for="route in lastRoutes"
-      v-i18n-authentication="route.allowedUserRoles"
+      v-ga-authentication="route.allowedUserRoles"
       :icon="route.icon"
       :key="`Route_${route.path}`"
       :text="$tc(route.text, 1)"
@@ -32,6 +32,8 @@ import {
   }
 })
 export default class Home extends Vue {
+  $router!: any;
+
   lastRoutes!: any[];
 
   mounted() {

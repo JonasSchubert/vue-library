@@ -1,5 +1,5 @@
 <template>
-  <v-app-bar app clipped-left clipped-right color="primary" dark dense>
+  <v-app-bar app clipped-left clipped-right dense elevation="2">
     <slot />
 
     <v-spacer />

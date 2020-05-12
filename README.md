@@ -4,10 +4,10 @@
 
 [![Version](https://img.shields.io/badge/Version-20.05.12--0-blue.svg)](./src/)
 
-[![Statements](https://img.shields.io/badge/Statements-89.24%25-green.svg)](./tests/unit/)
+[![Statements](https://img.shields.io/badge/Statements-89.2%25-green.svg)](./tests/unit/)
 [![Branch](https://img.shields.io/badge/Branch-81.67%25-green.svg)](./tests/unit/)
 [![Functions](https://img.shields.io/badge/Functions-90.4%25-green.svg)](./tests/unit/)
-[![Lines](https://img.shields.io/badge/Lines-89.3%25-green.svg)](./tests/unit/)
+[![Lines](https://img.shields.io/badge/Lines-89.26%25-green.svg)](./tests/unit/)
 
 ### NPM Scripts
 

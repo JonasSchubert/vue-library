@@ -1,7 +1,7 @@
 <template>
-  <v-btn text :dark="dark" :to="to">
-    <v-icon v-once>{{ icon }}</v-icon>
-    <div class="d-sm-none d-md-flex ml-2">{{ text }}</div>
+  <v-btn text :to="to">
+    <v-icon :color="$route.path === to ? 'primary' : ''">{{ icon }}</v-icon>
+    <div :style="$route.path === to ? `color: ${$vuetify.theme.currentTheme.primary};` : ''" class="d-sm-none d-md-flex ml-2">{{ text }}</div>
   </v-btn>
 </template>
 
@@ -13,9 +13,6 @@ import { Component, Prop } from "vue-property-decorator";
   name: "app-bar-btn"
 })
 export default class AppBarBtn extends Vue {
-  @Prop({ default: true, required: false })
-  dark?: boolean;
-
   @Prop({ default: "", required: true })
   icon?: string;
 
