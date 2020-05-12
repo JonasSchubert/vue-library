@@ -32,7 +32,7 @@ import {
   }
 })
 export default class Home extends Vue {
-  public lastRoutes!: any[];
+  lastRoutes!: any[];
 
   mounted() {
     if (this.lastRoutes.length === 1) {

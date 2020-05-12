@@ -32,7 +32,7 @@ import { defaultSnackbarConfig, SnackbarConfig, SnackbarEvents } from "./index";
   })
 })
 export default class AppSnackbar extends Vue {
-  public open = false;
+  open = false;
 
   mounted() {
     EventBus.$on(SnackbarEvents.hide, () => this.hide());

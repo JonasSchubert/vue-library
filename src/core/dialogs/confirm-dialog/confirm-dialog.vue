@@ -37,7 +37,7 @@ import { ConfirmDialogButtons, ConfirmDialogConfig } from "./index";
   name: "confirm-dialog"
 })
 export default class ConfirmDialog extends Vue {
-  public buttons: ConfirmDialogButtons = {
+  buttons: ConfirmDialogButtons = {
     confirm: {
       icon: undefined,
       iconColor: undefined,
@@ -46,36 +46,36 @@ export default class ConfirmDialog extends Vue {
     }
   };
 
-  public maxWidth = 360;
+  maxWidth = 360;
 
-  public message = "";
+  message = "";
 
-  public messageParams: string[] = [];
+  messageParams: string[] = [];
 
-  private meta: any = undefined;
+  showDialog = false;
 
-  public showDialog = false;
+  title = "";
 
-  public title = "";
+  translate = true;
 
-  public translate = true;
+  private _meta: any = undefined;
 
-  public cancel(): void {
-    this.$emit("cancel", this.meta);
+  cancel(): void {
+    this.$emit("cancel", this._meta);
     this.showDialog = false;
   }
 
-  public confirm(): void {
-    this.$emit("confirm", this.meta);
+  confirm(): void {
+    this.$emit("confirm", this._meta);
     this.showDialog = false;
   }
 
-  public open<T>(config: ConfirmDialogConfig<T>): void {
+  open<T>(config: ConfirmDialogConfig<T>): void {
     this.buttons = config.buttons;
     this.maxWidth = config.maxWidth || 360;
     this.message = config.message;
     this.messageParams = config.messageParams || [];
-    this.meta = config.meta;
+    this._meta = config.meta;
     this.title = config.title;
     this.showDialog = true;
     this.translate = config.translate !== undefined ? config.translate : true;
