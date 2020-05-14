@@ -1,6 +1,6 @@
 {
   "name": "vue-library",
-  "version": "20.05.12-0",
+  "version": "20.05.14-0",
   "description": "",
   "author": {
     "name": "Jonas Schubert",
@@ -30,13 +30,14 @@
     "vue-i18n": "^8.17.5",
     "vue-property-decorator": "^8.4.2",
     "vue-router": "^3.1.6",
-    "vuetify": "^2.2.27",
+    "vuetify": "^2.2.28",
     "vuex": "^3.4.0"
   },
   "devDependencies": {
-    "@types/jest": "^25.2.1",
-    "@typescript-eslint/eslint-plugin": "^2.32.0",
-    "@typescript-eslint/parser": "^2.32.0",
+    "@babel/core": "^7.9.6",
+    "@types/jest": "^25.2.2",
+    "@typescript-eslint/eslint-plugin": "^2.33.0",
+    "@typescript-eslint/parser": "^2.33.0",
     "@vue/cli-plugin-babel": "~4.3.1",
     "@vue/cli-plugin-eslint": "~4.3.1",
     "@vue/cli-plugin-typescript": "~4.3.1",

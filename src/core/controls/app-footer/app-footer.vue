@@ -10,7 +10,7 @@
       v-model="isDarkTheme"
     ></v-switch>
 
-    <v-spacer></v-spacer>
+    <slot></slot>
 
     <div>{{ version }} ({{ libVersion }})</div>
   </v-footer>
