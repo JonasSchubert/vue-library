@@ -80,6 +80,8 @@ import { ActionTypes, GetterTypes, ModuleType } from "../store/types";
   }
 })
 export default class Login extends Vue {
+  $t!: any;
+
   password = "";
 
   saveLoginDataTemporary = true;

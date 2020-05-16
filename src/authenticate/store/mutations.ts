@@ -3,7 +3,7 @@ import { MutationTypes } from './types';
 import { AuthenticateModuleSetup, AuthenticateState, LoginResponse } from '../models';
 import { writeCookie, deleteCookie } from '../../core/cookie';
 
-export const createMutations = <T extends LoginResponse>({ cookieKeyAuthenticationToken, daysTilExpiredAuthenticationCookie }: AuthenticateModuleSetup): MutationTree<AuthenticateState<T>> => ({
+export const createMutations = <TRootState, T extends LoginResponse>({ cookieKeyAuthenticationToken, daysTilExpiredAuthenticationCookie }: AuthenticateModuleSetup<TRootState, T>): MutationTree<AuthenticateState<T>> => ({
   [MutationTypes.setData]: (state: AuthenticateState<T>, { data, saveLoginDataTemporary }: { data: T | undefined; saveLoginDataTemporary: boolean }): void => {
     state.data = data;
 
