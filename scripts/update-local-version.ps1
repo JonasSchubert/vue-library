@@ -25,8 +25,10 @@ $newVersionJson = "$newDate-$newPatch"
 
 (Get-Content package.json) -replace $oldVersionJson, $newVersionJson | Out-File -encoding ASCII package.json
 (Get-Content package-lock.json) -replace $oldVersionJson, $newVersionJson | Out-File -encoding ASCII package-lock.json
+(Get-Content src\version.json) -replace $oldVersionJson, $newVersionJson | Out-File -encoding ASCII src\version.json
 
 git add package.json
 git add package-lock.json
+git add src\version.json
 
 git commit -m "[script][version] bumps version to $newVersionJson"

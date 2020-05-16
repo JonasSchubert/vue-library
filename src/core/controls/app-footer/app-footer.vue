@@ -24,7 +24,7 @@ import {
   GetterTypes as LocaleStorageGetterTypes,
   ModuleType as LocaleStorageModuleType
 } from "../../../local-storage/store/types";
-import { version as libVersion } from "../../../../package.json";
+import { version as libVersion } from "../../../version.json";
 
 @Component({
   name: "app-footer"
