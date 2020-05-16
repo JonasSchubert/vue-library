@@ -1,8 +1,7 @@
-import { UserRole } from "../enums";
+import { LoginResponse } from "./login-response";
 
-export interface AuthenticateState {
+export interface AuthenticateState<T extends LoginResponse> {
+  data?: T;
   error?: Error;
   isLoading: boolean;
-  token?: string;
-  userRoles: UserRole[];
 }

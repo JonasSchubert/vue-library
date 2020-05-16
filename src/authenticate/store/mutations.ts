@@ -1,26 +1,22 @@
 import { MutationTree } from 'vuex';
 import { MutationTypes } from './types';
-import { UserRole } from '../enums';
-import { AuthenticateModuleSetup, AuthenticateState } from '../models';
+import { AuthenticateModuleSetup, AuthenticateState, LoginResponse } from '../models';
 import { writeCookie, deleteCookie } from '../../core/cookie';
 
-export const createMutations = ({ cookieKeyAuthenticationToken, daysTilExpiredAuthenticationCookie }: AuthenticateModuleSetup): MutationTree<AuthenticateState> => ({
-  [MutationTypes.setError]: (state: AuthenticateState, { error }: { error: Error | undefined }): void => {
-    state.error = error;
-  },
-  [MutationTypes.setIsLoading]: (state: AuthenticateState, { isLoading }: { isLoading: boolean }): void => {
-    state.isLoading = isLoading;
-  },
-  [MutationTypes.setToken]: (state: AuthenticateState, { token, saveLoginDataTemporary }: { token: string | undefined; saveLoginDataTemporary: boolean }): void => {
-    state.token = token;
+export const createMutations = <T extends LoginResponse>({ cookieKeyAuthenticationToken, daysTilExpiredAuthenticationCookie }: AuthenticateModuleSetup): MutationTree<AuthenticateState<T>> => ({
+  [MutationTypes.setData]: (state: AuthenticateState<T>, { data, saveLoginDataTemporary }: { data: T | undefined; saveLoginDataTemporary: boolean }): void => {
+    state.data = data;
 
-    if (token !== undefined && saveLoginDataTemporary) {
-      writeCookie(cookieKeyAuthenticationToken, token, daysTilExpiredAuthenticationCookie);
-    } else if (token === undefined) {
+    if (data?.token !== undefined && saveLoginDataTemporary) {
+      writeCookie(cookieKeyAuthenticationToken, data.token, daysTilExpiredAuthenticationCookie);
+    } else if (!!data && data.token === undefined) {
       deleteCookie(cookieKeyAuthenticationToken);
     }
   },
-  [MutationTypes.setUserRoles]: (state: AuthenticateState, { userRoles }: { userRoles: UserRole[] }): void => {
-    state.userRoles = userRoles;
+  [MutationTypes.setError]: (state: AuthenticateState<T>, { error }: { error: Error | undefined }): void => {
+    state.error = error;
+  },
+  [MutationTypes.setIsLoading]: (state: AuthenticateState<T>, { isLoading }: { isLoading: boolean }): void => {
+    state.isLoading = isLoading;
   }
 });

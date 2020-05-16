@@ -1,19 +1,17 @@
 import axios, { AxiosResponse } from 'axios';
 import { ActionTree, Commit } from 'vuex';
 import { ActionTypes, MutationTypes, RouteTypes } from './types';
-import { UserRole } from '../enums';
 import {
   AuthenticateState, LoginData, LoginResponse, ValidateTokenData
 } from '../models';
 import { snackbar } from '../../core/controls/app-snackbar';
 
 const resetState = (commit: Commit): void => {
-  commit(MutationTypes.setToken, { token: undefined, saveLoginDataTemporary: false });
-  commit(MutationTypes.setUserRoles, { userRoles: [] });
+  commit(MutationTypes.setData, { data: undefined, saveLoginDataTemporary: false });
   commit(MutationTypes.setError, { error: undefined });
 };
 
-export const createActions = <TRootState>(): ActionTree<AuthenticateState, TRootState> => ({
+export const createActions = <TRootState, T extends LoginResponse>(): ActionTree<AuthenticateState<T>, TRootState> => ({
   [ActionTypes.login]({ commit, dispatch }, { password, saveLoginDataTemporary, userName }: LoginData): Promise<LoginResponse> {
     commit(MutationTypes.setIsLoading, { isLoading: true });
     resetState(commit);
@@ -21,13 +19,8 @@ export const createActions = <TRootState>(): ActionTree<AuthenticateState, TRoot
     return new Promise((resolve) => {
       axios.get<LoginResponse>(`${RouteTypes.authenticate}/login/${userName}/${password}`)
         .then((response: AxiosResponse<LoginResponse>) => {
-          if (response.data.item1) {
-            const token: string = response.data.item2;
-            const userRoles: UserRole[] = UserRole.toArray(response.data.item3);
-
-            commit(MutationTypes.setToken, { token, saveLoginDataTemporary });
-            commit(MutationTypes.setUserRoles, { userRoles });
-            commit(MutationTypes.setError, { error: undefined });
+          if (response.data.success) {
+            commit(MutationTypes.setData, { data: response.data, saveLoginDataTemporary });
           } else {
             snackbar.error({ message: 'message.login-failure', messageParams: [''] });
             const error: Error = {
@@ -98,12 +91,8 @@ export const createActions = <TRootState>(): ActionTree<AuthenticateState, TRoot
     return new Promise((resolve) => {
       axios.get<LoginResponse>(`${RouteTypes.authenticate}/validate-token/${token}`)
         .then((response: AxiosResponse<LoginResponse>) => {
-          if (response.data.item1) {
-            const userRoles: UserRole[] = UserRole.toArray(response.data.item3);
-
-            commit(MutationTypes.setToken, { token, saveLoginDataTemporary: true });
-            commit(MutationTypes.setUserRoles, { userRoles });
-            commit(MutationTypes.setError, { error: undefined });
+          if (response.data.success) {
+            commit(MutationTypes.setData, { data: response.data, saveLoginDataTemporary: true });
           } else {
             snackbar.error({ message: 'message.token-validation-failure' });
             const error: Error = {

@@ -17,10 +17,9 @@ export const GetterTypes = {
 export const ModuleType = 'authenticate';
 
 export const MutationTypes = {
+  setData: 'setData',
   setError: 'setError',
-  setIsLoading: 'setIsLoading',
-  setToken: 'setToken',
-  setUserRoles: 'setUserRoles'
+  setIsLoading: 'setIsLoading'
 };
 
 export const RouteTypes = {

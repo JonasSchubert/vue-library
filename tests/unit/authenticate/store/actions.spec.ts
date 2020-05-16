@@ -13,9 +13,9 @@ describe('authenticate/actions', () => {
     test('should call backend as expected and commit with returned data for login succeeded', async (done) => {
       // Arrange
       const responseData: LoginResponse = {
-        item1: true,
-        item2: 'token',
-        item3: UserRole.Administrator + UserRole.User
+        role: UserRole.Administrator + UserRole.User,
+        success: true,
+        token: 'token'
       };
       const commit = jest.fn();
       const dispatch = jest.fn();
@@ -27,14 +27,18 @@ describe('authenticate/actions', () => {
           // Assert
           expect(axios.get).toHaveBeenCalledTimes(1);
           expect(axios.get).toHaveBeenCalledWith('authenticate/login/userName/password');
-          expect(commit).toHaveBeenCalledTimes(8);
+          expect(commit).toHaveBeenCalledTimes(5);
           expect(commit).toHaveBeenCalledWith('setIsLoading', { isLoading: true });
-          expect(commit).toHaveBeenCalledWith('setToken', { token: undefined, saveLoginDataTemporary: false });
-          expect(commit).toHaveBeenCalledWith('setUserRoles', { userRoles: [] });
+          expect(commit).toHaveBeenCalledWith('setData', { data: undefined, saveLoginDataTemporary: false });
           expect(commit).toHaveBeenCalledWith('setError', { error: undefined });
-          expect(commit).toHaveBeenCalledWith('setToken', { token: 'token', saveLoginDataTemporary: false });
-          expect(commit).toHaveBeenCalledWith('setUserRoles', { userRoles: [UserRole.User, UserRole.Administrator] });
-          expect(commit).toHaveBeenCalledWith('setError', { error: undefined });
+          expect(commit).toHaveBeenCalledWith('setData', {
+            data: {
+              role: UserRole.Administrator + UserRole.User,
+              success: true,
+              token: 'token'
+            },
+            saveLoginDataTemporary: false
+          });
           expect(commit).toHaveBeenCalledWith('setIsLoading', { isLoading: false });
           expect(dispatch).toHaveBeenCalledTimes(0);
           done();
@@ -44,9 +48,9 @@ describe('authenticate/actions', () => {
     test('should call backend as expected and commit with returned data for login failed', async (done) => {
       // Arrange
       const responseData: LoginResponse = {
-        item1: false,
-        item2: '',
-        item3: UserRole.Null
+        role: UserRole.Null,
+        success: false,
+        token: ''
       };
       const commit = jest.fn();
       const dispatch = jest.fn();
@@ -58,10 +62,9 @@ describe('authenticate/actions', () => {
           // Assert
           expect(axios.get).toHaveBeenCalledTimes(1);
           expect(axios.get).toHaveBeenCalledWith('authenticate/login/userName/password');
-          expect(commit).toHaveBeenCalledTimes(6);
+          expect(commit).toHaveBeenCalledTimes(5);
           expect(commit).toHaveBeenCalledWith('setIsLoading', { isLoading: true });
-          expect(commit).toHaveBeenCalledWith('setToken', { token: undefined, saveLoginDataTemporary: false });
-          expect(commit).toHaveBeenCalledWith('setUserRoles', { userRoles: [] });
+          expect(commit).toHaveBeenCalledWith('setData', { data: undefined, saveLoginDataTemporary: false });
           expect(commit).toHaveBeenCalledWith('setError', { error: undefined });
           expect(commit).toHaveBeenCalledWith('setError', {
             error: {
@@ -70,8 +73,6 @@ describe('authenticate/actions', () => {
             }
           });
           expect(commit).toHaveBeenCalledWith('setIsLoading', { isLoading: false });
-          // expect(snackbarModule.snackbar.error).toHaveBeenCalledTimes(1);
-          // expect(snackbarModule.snackbar.error).toHaveBeenCalledWith({ message: 'message.login-failure' });
           expect(dispatch).toHaveBeenCalledTimes(0);
           done();
         });
@@ -93,10 +94,9 @@ describe('authenticate/actions', () => {
           // Assert
           expect(axios.get).toHaveBeenCalledTimes(1);
           expect(axios.get).toHaveBeenCalledWith('authenticate/login/userName/password');
-          expect(commit).toHaveBeenCalledTimes(6);
+          expect(commit).toHaveBeenCalledTimes(5);
           expect(commit).toHaveBeenCalledWith('setIsLoading', { isLoading: true });
-          expect(commit).toHaveBeenCalledWith('setToken', { token: undefined, saveLoginDataTemporary: false });
-          expect(commit).toHaveBeenCalledWith('setUserRoles', { userRoles: [] });
+          expect(commit).toHaveBeenCalledWith('setData', { data: undefined, saveLoginDataTemporary: false });
           expect(commit).toHaveBeenCalledWith('setError', { error: undefined });
           expect(commit).toHaveBeenCalledWith('setError', {
             error: {
@@ -126,10 +126,9 @@ describe('authenticate/actions', () => {
           // Assert
           expect(axios.get).toHaveBeenCalledTimes(1);
           expect(axios.get).toHaveBeenCalledWith('authenticate/logout/token');
-          expect(commit).toHaveBeenCalledTimes(5);
+          expect(commit).toHaveBeenCalledTimes(4);
           expect(commit).toHaveBeenCalledWith('setIsLoading', { isLoading: true });
-          expect(commit).toHaveBeenCalledWith('setToken', { token: undefined, saveLoginDataTemporary: false });
-          expect(commit).toHaveBeenCalledWith('setUserRoles', { userRoles: [] });
+          expect(commit).toHaveBeenCalledWith('setData', { data: undefined, saveLoginDataTemporary: false });
           expect(commit).toHaveBeenCalledWith('setError', { error: undefined });
           expect(commit).toHaveBeenCalledWith('setIsLoading', { isLoading: false });
           expect(dispatch).toHaveBeenCalledTimes(0);
@@ -201,9 +200,9 @@ describe('authenticate/actions', () => {
     test('should call backend as expected and commit with returned data for validation succeeded as Administrator', async (done) => {
       // Arrange
       const responseData: LoginResponse = {
-        item1: true,
-        item2: 'token',
-        item3: UserRole.Administrator
+        role: UserRole.Administrator,
+        success: true,
+        token: 'token'
       };
       const commit = jest.fn();
       const dispatch = jest.fn();
@@ -215,26 +214,30 @@ describe('authenticate/actions', () => {
           // Assert
           expect(axios.get).toHaveBeenCalledTimes(1);
           expect(axios.get).toHaveBeenCalledWith('authenticate/validate-token/token');
-          expect(commit).toHaveBeenCalledTimes(8);
+          expect(commit).toHaveBeenCalledTimes(5);
           expect(commit).toHaveBeenCalledWith('setIsLoading', { isLoading: true });
-          expect(commit).toHaveBeenCalledWith('setToken', { token: undefined, saveLoginDataTemporary: false });
-          expect(commit).toHaveBeenCalledWith('setUserRoles', { userRoles: [] });
+          expect(commit).toHaveBeenCalledWith('setData', { data: undefined, saveLoginDataTemporary: false });
           expect(commit).toHaveBeenCalledWith('setError', { error: undefined });
-          expect(commit).toHaveBeenCalledWith('setToken', { token: 'token', saveLoginDataTemporary: true });
-          expect(commit).toHaveBeenCalledWith('setUserRoles', { userRoles: [UserRole.Administrator] });
-          expect(commit).toHaveBeenCalledWith('setError', { error: undefined });
+          expect(commit).toHaveBeenCalledWith('setData', {
+            data: {
+              role: UserRole.Administrator,
+              success: true,
+              token: 'token'
+            },
+            saveLoginDataTemporary: true
+          });
           expect(commit).toHaveBeenCalledWith('setIsLoading', { isLoading: false });
           expect(dispatch).toHaveBeenCalledTimes(0);
           done();
         });
     });
 
-    test('should call backend as expected and commit with returned data for validation succeeded as Editor', async (done) => {
+    test('should call backend as expected and commit with returned data for validation succeeded as User', async (done) => {
       // Arrange
       const responseData: LoginResponse = {
-        item1: true,
-        item2: 'token',
-        item3: UserRole.User
+        role: UserRole.User,
+        success: true,
+        token: 'token'
       };
       const commit = jest.fn();
       const dispatch = jest.fn();
@@ -246,14 +249,18 @@ describe('authenticate/actions', () => {
           // Assert
           expect(axios.get).toHaveBeenCalledTimes(1);
           expect(axios.get).toHaveBeenCalledWith('authenticate/validate-token/token');
-          expect(commit).toHaveBeenCalledTimes(8);
+          expect(commit).toHaveBeenCalledTimes(5);
           expect(commit).toHaveBeenCalledWith('setIsLoading', { isLoading: true });
-          expect(commit).toHaveBeenCalledWith('setToken', { token: undefined, saveLoginDataTemporary: false });
-          expect(commit).toHaveBeenCalledWith('setUserRoles', { userRoles: [] });
+          expect(commit).toHaveBeenCalledWith('setData', { data: undefined, saveLoginDataTemporary: false });
           expect(commit).toHaveBeenCalledWith('setError', { error: undefined });
-          expect(commit).toHaveBeenCalledWith('setToken', { token: 'token', saveLoginDataTemporary: true });
-          expect(commit).toHaveBeenCalledWith('setUserRoles', { userRoles: [UserRole.User] });
-          expect(commit).toHaveBeenCalledWith('setError', { error: undefined });
+          expect(commit).toHaveBeenCalledWith('setData', {
+            data: {
+              role: UserRole.User,
+              success: true,
+              token: 'token'
+            },
+            saveLoginDataTemporary: true
+          });
           expect(commit).toHaveBeenCalledWith('setIsLoading', { isLoading: false });
           expect(dispatch).toHaveBeenCalledTimes(0);
           done();
@@ -263,9 +270,9 @@ describe('authenticate/actions', () => {
     test('should call backend as expected and commit with returned data for validation failed', async (done) => {
       // Arrange
       const responseData: LoginResponse = {
-        item1: false,
-        item2: '',
-        item3: UserRole.Null
+        role: UserRole.Null,
+        success: false,
+        token: ''
       };
       const commit = jest.fn();
       const dispatch = jest.fn();
@@ -277,10 +284,9 @@ describe('authenticate/actions', () => {
           // Assert
           expect(axios.get).toHaveBeenCalledTimes(1);
           expect(axios.get).toHaveBeenCalledWith('authenticate/validate-token/token');
-          expect(commit).toHaveBeenCalledTimes(6);
+          expect(commit).toHaveBeenCalledTimes(5);
           expect(commit).toHaveBeenCalledWith('setIsLoading', { isLoading: true });
-          expect(commit).toHaveBeenCalledWith('setToken', { token: undefined, saveLoginDataTemporary: false });
-          expect(commit).toHaveBeenCalledWith('setUserRoles', { userRoles: [] });
+          expect(commit).toHaveBeenCalledWith('setData', { data: undefined, saveLoginDataTemporary: false });
           expect(commit).toHaveBeenCalledWith('setError', { error: undefined });
           expect(commit).toHaveBeenCalledWith('setError', {
             error: {
@@ -310,10 +316,9 @@ describe('authenticate/actions', () => {
           // Assert
           expect(axios.get).toHaveBeenCalledTimes(1);
           expect(axios.get).toHaveBeenCalledWith('authenticate/validate-token/token');
-          expect(commit).toHaveBeenCalledTimes(6);
+          expect(commit).toHaveBeenCalledTimes(5);
           expect(commit).toHaveBeenCalledWith('setIsLoading', { isLoading: true });
-          expect(commit).toHaveBeenCalledWith('setToken', { token: undefined, saveLoginDataTemporary: false });
-          expect(commit).toHaveBeenCalledWith('setUserRoles', { userRoles: [] });
+          expect(commit).toHaveBeenCalledWith('setData', { data: undefined, saveLoginDataTemporary: false });
           expect(commit).toHaveBeenCalledWith('setError', { error: undefined });
           expect(commit).toHaveBeenCalledWith('setError', {
             error: {

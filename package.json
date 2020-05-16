@@ -1,6 +1,6 @@
 {
   "name": "vue-library",
-  "version": "20.05.14-0",
+  "version": "20.05.16-0",
   "description": "",
   "author": {
     "name": "Jonas Schubert",
@@ -27,7 +27,7 @@
     "core-js": "^3.6.5",
     "vue": "^2.6.11",
     "vue-class-component": "^7.2.3",
-    "vue-i18n": "^8.17.5",
+    "vue-i18n": "^8.17.6",
     "vue-property-decorator": "^8.4.2",
     "vue-router": "^3.1.6",
     "vuetify": "^2.2.28",

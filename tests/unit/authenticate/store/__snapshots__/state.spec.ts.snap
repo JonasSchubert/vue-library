@@ -2,9 +2,8 @@
 
 exports[`createAuthenticateState should not change unexpected 1`] = `
 Object {
+  "data": undefined,
   "error": undefined,
   "isLoading": false,
-  "token": undefined,
-  "userRoles": Array [],
 }
 `;

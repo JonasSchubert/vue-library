@@ -24,10 +24,9 @@ exports[`ModuleType should not change unexpected 1`] = `"authenticate"`;
 
 exports[`MutationTypes should not change unexpected 1`] = `
 Object {
+  "setData": "setData",
   "setError": "setError",
   "setIsLoading": "setIsLoading",
-  "setToken": "setToken",
-  "setUserRoles": "setUserRoles",
 }
 `;
 

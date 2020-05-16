@@ -1,14 +1,14 @@
 import { Module } from 'vuex';
-import { AuthenticateModuleSetup, AuthenticateState } from '../models';
+import { AuthenticateModuleSetup, AuthenticateState, LoginResponse } from '../models';
 import { createActions } from './actions';
 import { createGetters } from './getters';
 import { createMutations } from './mutations';
 import { createAuthenticateState } from './state';
 
-export const createAuthenticateModule = <TRootState>({ cookieKeyAuthenticationToken, daysTilExpiredAuthenticationCookie }: AuthenticateModuleSetup): Module<AuthenticateState, TRootState> => ({
+export const createAuthenticateModule = <TRootState, T extends LoginResponse>({ cookieKeyAuthenticationToken, customGetters, daysTilExpiredAuthenticationCookie }: AuthenticateModuleSetup<TRootState, T>): Module<AuthenticateState<T>, TRootState> => ({
   namespaced: true,
   actions: createActions(),
-  getters: createGetters(),
+  getters: createGetters(customGetters),
   mutations: createMutations({ cookieKeyAuthenticationToken, daysTilExpiredAuthenticationCookie }),
   state: createAuthenticateState()
 });

@@ -1,20 +1,40 @@
 import { UserRole } from '@/authenticate/enums';
-import { AuthenticateState } from '@/authenticate/models';
+import { AuthenticateState, LoginResponse } from '@/authenticate/models';
 import { createMutations } from '@/authenticate/store/mutations';
 import { MutationTypes } from '@/authenticate/store/types';
 
 describe('authenticate/mutations', () => {
-  let state: AuthenticateState;
+  let state: AuthenticateState<LoginResponse>;
 
   const mutations = createMutations({ cookieKeyAuthenticationToken: 'unit-test', daysTilExpiredAuthenticationCookie: 1 });
 
   beforeEach(() => {
     state = {
+      data: undefined,
       error: undefined,
-      isLoading: false,
-      token: undefined,
-      userRoles: []
+      isLoading: false
     };
+  });
+
+  describe(`${MutationTypes.setData}`, () => {
+    test('should set data', () => {
+      // Arrange
+      const data: LoginResponse = {
+        role: UserRole.User,
+        success: true,
+        token: 'token'
+      };
+
+      // Act
+      mutations[MutationTypes.setData](state, { data });
+
+      // Assert
+      expect(state.data).toMatchSnapshot({
+        role: UserRole.User,
+        success: true,
+        token: 'token'
+      });
+    });
   });
 
   describe(`${MutationTypes.setError}`, () => {
@@ -46,32 +66,6 @@ describe('authenticate/mutations', () => {
 
       // Assert
       expect(state.isLoading).toBeTruthy();
-    });
-  });
-
-  describe(`${MutationTypes.setToken}`, () => {
-    test('should set token', () => {
-      // Arrange
-      const token = 'token';
-
-      // Act
-      mutations[MutationTypes.setToken](state, { token, saveLoginDataTemporary: false });
-
-      // Assert
-      expect(state.token).toBe('token');
-    });
-  });
-
-  describe(`${MutationTypes.setUserRoles}`, () => {
-    test('should set userRoles', () => {
-      // Arrange
-      const userRoles = [UserRole.User];
-
-      // Act
-      mutations[MutationTypes.setUserRoles](state, { userRoles });
-
-      // Assert
-      expect(state.userRoles).toMatchSnapshot([UserRole.User]);
     });
   });
 });
