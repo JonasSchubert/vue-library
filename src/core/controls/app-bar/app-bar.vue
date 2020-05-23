@@ -2,7 +2,7 @@
   <v-app-bar app clipped-left clipped-right dense elevation="2">
     <slot />
 
-    <v-spacer />
+    <v-spacer v-if="!hideSpacer" />
 
     <app-locale-chooser />
 
@@ -26,5 +26,8 @@ import { Component, Prop } from "vue-property-decorator";
 export default class AppBar extends Vue {
   @Prop({ default: false, required: true })
   isAnythingLoading!: boolean;
+
+  @Prop({ default: false, required: false })
+  hideSpacer!: boolean;
 }
 </script>
