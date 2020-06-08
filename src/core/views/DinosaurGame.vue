@@ -1,0 +1,3 @@
+<template>
+  <dinosaur-game />
+</template>

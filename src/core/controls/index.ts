@@ -5,5 +5,6 @@ import AppContent from './app-content/app-content.vue';
 import AppFooter from './app-footer/app-footer.vue';
 import AppLocaleChooser from './app-locale-chooser/app-locale-chooser.vue';
 import AppSnackbar from './app-snackbar/app-snackbar.vue';
+import DinosaurGame from './dinosaur-game/dinosaur-game.vue';
 
-export const controls = [AppBar, AppBarBtn, AppBarMenu, AppContent, AppFooter, AppLocaleChooser, AppSnackbar];
+export const controls = [AppBar, AppBarBtn, AppBarMenu, AppContent, AppFooter, AppLocaleChooser, AppSnackbar, DinosaurGame];

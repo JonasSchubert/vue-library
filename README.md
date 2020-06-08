@@ -4,10 +4,10 @@
 
 [![Version](https://img.shields.io/badge/Version-20.06.08--0-blue.svg)](./src/)
 
-[![Statements](https://img.shields.io/badge/Statements-87.64%25-green.svg)](./tests/unit/)
-[![Branch](https://img.shields.io/badge/Branch-69.23%25-yellow.svg)](./tests/unit/)
-[![Functions](https://img.shields.io/badge/Functions-84.96%25-green.svg)](./tests/unit/)
-[![Lines](https://img.shields.io/badge/Lines-87.54%25-green.svg)](./tests/unit/)
+[![Statements](https://img.shields.io/badge/Statements-86.89%25-green.svg)](./tests/unit/)
+[![Branch](https://img.shields.io/badge/Branch-66.67%25-yellow.svg)](./tests/unit/)
+[![Functions](https://img.shields.io/badge/Functions-83.09%25-green.svg)](./tests/unit/)
+[![Lines](https://img.shields.io/badge/Lines-86.69%25-green.svg)](./tests/unit/)
 
 ### NPM Scripts
 

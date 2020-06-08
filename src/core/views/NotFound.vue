@@ -8,5 +8,7 @@
     <h3>{{ $t("message.not-found-message") }}</h3>
     <br />
     <app-bar-btn icon="mdi-arrow-left" to="/" :text="$t('message.go-back-to-start')" />
+    <br />
+    <app-bar-btn icon="mdi-gamepad" to="/dinosaur-game" :text="$t('message.play-a-game')" />
   </div>
 </template>
