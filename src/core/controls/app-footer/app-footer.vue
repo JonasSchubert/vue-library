@@ -35,17 +35,12 @@ export default class AppFooter extends Vue {
 
   libVersion: string = libVersion;
 
-  get isDarkTheme() {
-    return this.$store.getters[
-      `${LocaleStorageModuleType}/${LocaleStorageGetterTypes.isDarkTheme}`
-    ];
+  get isDarkTheme(): boolean {
+    return this.$store.getters[`${LocaleStorageModuleType}/${LocaleStorageGetterTypes.isDarkTheme}`];
   }
 
-  set isDarkTheme(value) {
-    this.$store.dispatch(
-      `${LocaleStorageModuleType}/${LocaleStorageActionTypes.updateIsDarkTheme}`,
-      { isDarkTheme: value }
-    );
+  set isDarkTheme(value: boolean) {
+    this.$store.dispatch(`${LocaleStorageModuleType}/${LocaleStorageActionTypes.updateIsDarkTheme}`, { isDarkTheme: value });
   }
 }
 </script>

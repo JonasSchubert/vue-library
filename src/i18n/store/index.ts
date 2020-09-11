@@ -7,8 +7,8 @@ import { createState } from './state';
 
 export const createModule = <T>(config: I18nModuleConfig): Module<I18nState, T> => ({
   namespaced: true,
-  actions: createActions<T>(config.baseUrl, config.i18n),
+  actions: createActions<T>(config),
   getters: createGetters<T>(),
-  mutations: createMutations(config.i18n),
+  mutations: createMutations(config),
   state: createState(config)
 });

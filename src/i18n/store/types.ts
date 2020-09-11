@@ -5,7 +5,6 @@ export const ActionTypes = {
 };
 
 export const GetterTypes = {
-  applicationToken: 'applicationToken',
   availableLocales: 'availableLocales',
   currentLocale: 'currentLocale',
   error: 'error',

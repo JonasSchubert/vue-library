@@ -1,7 +1,6 @@
 import { I18nModuleConfig, I18nState } from '../models';
 
-export const createState = ({ applicationToken, defaultLocale, defaultMessages }: I18nModuleConfig): I18nState => ({
-  applicationToken,
+export const createState = ({ defaultLocale, defaultMessages }: I18nModuleConfig): I18nState => ({
   availableLocales: [defaultLocale],
   currentLocale: defaultLocale,
   error: undefined,

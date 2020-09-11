@@ -1,20 +1,16 @@
 import axios, { AxiosResponse } from 'axios';
-import { IVueI18n } from 'vue-i18n';
 import { ActionTree } from 'vuex';
-import { ActionLoadPayload, I18nState } from '../models';
-import {
-  ActionTypes, GetterTypes, MutationTypes, RouteTypes
-} from './types';
+import { ActionLoadPayload, I18nModuleConfig, I18nState } from '../models';
+import { ActionTypes, MutationTypes, RouteTypes } from './types';
 
-export const createActions = <T>(baseUrl: string, i18n: IVueI18n): ActionTree<I18nState, T> => ({
-  [ActionTypes.getAllTranslations]({ commit, getters }): Promise<any> {
-    const token: string = getters[GetterTypes.applicationToken];
+export const createActions = <T>({ baseUrl, i18n, token }: I18nModuleConfig): ActionTree<I18nState, T> => ({
+  [ActionTypes.getAllTranslations]({ commit }): Promise<any> {
     commit(MutationTypes.setError, { error: undefined });
 
     return new Promise((resolve) => {
-      axios.get<any>(`${baseUrl}${RouteTypes.getAllTranslations}/${token}`)
+      axios.get<any>(`${baseUrl}${RouteTypes.getAllTranslations}${token ? `/${token}` : ""}`)
         .then((response: AxiosResponse<any>) => {
-          if (response.data && Object.keys(response.data).length > 0) {
+          if (response.data && !!Object.keys(response.data).length) {
             commit(MutationTypes.setLocales, { locales: response.data });
           } else {
             const error: Error = {
@@ -28,15 +24,14 @@ export const createActions = <T>(baseUrl: string, i18n: IVueI18n): ActionTree<I1
         .finally(() => resolve());
     });
   },
-  [ActionTypes.getAvailableLocales]({ commit, dispatch, getters }): Promise<string[]> {
-    const token: string = getters[GetterTypes.applicationToken];
+  [ActionTypes.getAvailableLocales]({ commit, dispatch }): Promise<string[]> {
     commit(MutationTypes.setError, { error: undefined });
 
     return new Promise((resolve) => {
-      axios.get<string[]>(`${baseUrl}${RouteTypes.getAvailableLocales}/${token}`)
+      axios.get<string[]>(`${baseUrl}${RouteTypes.getAvailableLocales}${token ? `/${token}` : ""}`)
         .then((response: AxiosResponse<string[]>) => {
           const availableLocales: string[] = response.data;
-          if (availableLocales && availableLocales.length > 0) {
+          if (availableLocales?.length) {
             commit(MutationTypes.setAvailableLocales, { availableLocales });
             if (!availableLocales.includes(i18n.locale)) {
               commit(MutationTypes.setCurrentLocale, { currentLocale: availableLocales[0] });
@@ -56,14 +51,13 @@ export const createActions = <T>(baseUrl: string, i18n: IVueI18n): ActionTree<I1
         .finally(() => resolve());
     });
   },
-  [ActionTypes.getLocaleTranslations]({ commit, getters }, { ietfTag }: ActionLoadPayload): Promise<any> {
-    const token: string = getters[GetterTypes.applicationToken];
+  [ActionTypes.getLocaleTranslations]({ commit }, { ietfTag }: ActionLoadPayload): Promise<any> {
     commit(MutationTypes.setError, { error: undefined });
 
     return new Promise((resolve) => {
-      axios.get<any>(`${baseUrl}${RouteTypes.getLocaleTranslations}/${token}/${ietfTag}`)
+      axios.get<any>(`${baseUrl}${RouteTypes.getLocaleTranslations}${token ? `/${token}` : ""}/${ietfTag}`)
         .then((response: AxiosResponse<any>) => {
-          if (response.data && Object.keys(response.data).length > 0) {
+          if (response.data && !!Object.keys(response.data).length) {
             commit(MutationTypes.updateLocales, { locale: ietfTag, translations: response.data });
             commit(MutationTypes.setCurrentLocale, { currentLocale: ietfTag });
           } else {

@@ -90,7 +90,7 @@ export default class Login extends Vue {
 
   valid = false;
 
-  get rules() {
+  get rules(): any {
     return {
       password: [
         (value: string): boolean | string | LocaleMessages => !!value || this.$t("message.required")
@@ -108,10 +108,7 @@ export default class Login extends Vue {
         saveLoginDataTemporary: this.saveLoginDataTemporary,
         userName: this.userName
       };
-      this.$store.dispatch(
-        `${ModuleType}/${ActionTypes.login}`,
-        loginData
-      );
+      this.$store.dispatch(`${ModuleType}/${ActionTypes.login}`, loginData);
     }
   }
 

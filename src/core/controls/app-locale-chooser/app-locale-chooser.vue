@@ -29,29 +29,23 @@ import {
   name: "app-locale-chooser"
 })
 export default class AppLocaleChooser extends Vue {
-  get availableLocales() {
+  get availableLocales(): any {
     return this.$store.state.i18n.availableLocales;
   }
 
-  get locale() {
-    return this.availableLocales.findIndex(
-      (locale: string) => locale === this.$store.state.i18n.currentLocale
-    );
+  get locale(): number {
+    return this.availableLocales.findIndex((locale: string) => locale === this.$store.state.i18n.currentLocale);
   }
 
-  set locale(value) {
+  set locale(value: number) {
     if (value !== undefined) {
       const selectedLocale = this.availableLocales[value];
       const availableTranslations = this.$store.state.i18n.locales;
 
       if (!availableTranslations[selectedLocale]) {
-        this.$store.dispatch(`i18n/${I18nActionTypes.getLocaleTranslations}`, {
-          ietfTag: selectedLocale
-        });
+        this.$store.dispatch(`i18n/${I18nActionTypes.getLocaleTranslations}`, { ietfTag: selectedLocale });
       } else {
-        this.$store.commit(`i18n/${I18nMutationTypes.setCurrentLocale}`, {
-          currentLocale: selectedLocale
-        });
+        this.$store.commit(`i18n/${I18nMutationTypes.setCurrentLocale}`, { currentLocale: selectedLocale });
       }
     }
   }

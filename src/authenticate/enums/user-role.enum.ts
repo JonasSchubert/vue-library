@@ -25,7 +25,7 @@ export namespace UserRole {
   export const toValue = (userRoles: UserRole[]): UserRole => {
     let userRole: UserRole = UserRole.Null;
 
-    userRoles.forEach((value: UserRole) => userRole = userRole + value);
+    userRoles.forEach((value: UserRole) => userRole += value);
 
     return userRole;
   }

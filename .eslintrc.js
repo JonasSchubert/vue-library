@@ -17,7 +17,7 @@ module.exports = {
     'import/no-unresolved': 'off',
     'import/prefer-default-export': 'off',
     'linebreak-style': 'off',
-    'max-len': [process.env.NODE_ENV === 'production' ? 'error' : 'off', 200],
+    'max-len': ['error', 200],
     'no-console': process.env.NODE_ENV === 'production' ? 'error' : 'off',
     'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
     'no-param-reassign': 'off',
@@ -26,6 +26,7 @@ module.exports = {
     quotes: 'off',
     'quote-props': 'off',
     semi: 'off',
+    '@typescript-eslint/ban-types': 'off',
     '@typescript-eslint/no-explicit-any': 'off'
   },
   overrides: [

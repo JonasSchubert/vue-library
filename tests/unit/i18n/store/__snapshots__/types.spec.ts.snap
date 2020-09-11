@@ -10,7 +10,6 @@ Object {
 
 exports[`GetterTypes should not change unexpected 1`] = `
 Object {
-  "applicationToken": "applicationToken",
   "availableLocales": "availableLocales",
   "currentLocale": "currentLocale",
   "error": "error",

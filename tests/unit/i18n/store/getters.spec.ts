@@ -7,7 +7,6 @@ import { GetterTypes } from '@/i18n/store/types';
 describe('createGetters', () => {
   let state: I18nState;
 
-  const applicationToken = 'applicationToken';
   const availableLocales: string[] = ['de-DE', 'en-GB'];
   const currentLocale = 'en-GB';
   const error: Error = {
@@ -26,22 +25,11 @@ describe('createGetters', () => {
 
   beforeEach(() => {
     state = {
-      applicationToken,
       availableLocales,
       currentLocale,
       error,
       locales
     };
-  });
-
-  describe(`${GetterTypes.applicationToken}`, () => {
-    test('should return applicationToken as expected', () => {
-      // Arrange & Act
-      const actual = getters[GetterTypes.applicationToken](state, getters, state, {});
-
-      // Assert
-      expect(actual).toBe(applicationToken);
-    });
   });
 
   describe(`${GetterTypes.availableLocales}`, () => {

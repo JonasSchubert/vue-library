@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import { createLocalVue, shallowMount } from '@vue/test-utils';
 import VueI18n, { I18nOptions } from 'vue-i18n';
 import Vuex, { Store } from 'vuex';
@@ -32,7 +33,7 @@ const getMountedComponent = (Component: any, propsData: any) => shallowMount(Com
 describe('AppFooter', () => {
   test('renders as expected', () => {
     // Assert
-    expect(getMountedComponent(AppFooter, { version: '20.05.16-0' }).html()).toBe(`<v-footer-stub color=\"secondary\" height=\"auto\" dark=\"true\" tag=\"div\" tile=\"true\" app=\"true\" dense=\"\">
+    expect(getMountedComponent(AppFooter, { version: '20.09.10-0' }).html()).toBe(`<v-footer-stub color=\"secondary\" height=\"auto\" dark=\"true\" tag=\"footer\" app=\"true\" dense=\"\">
   <v-switch-stub errorcount=\"1\" errormessages=\"\" messages=\"\" rules=\"\" successmessages=\"\" value=\"\" backgroundcolor=\"\" dense=\"true\" hidedetails=\"true\" label=\"message.light-theme\" ripple=\"true\" valuecomparator=\"function deepEqual(a, b) {
           if (a === b) return true;
 
@@ -57,7 +58,7 @@ describe('AppFooter', () => {
             return deepEqual(a[p], b[p]);
           });
         }\" input-value=\"true\" class=\"mt-0\"></v-switch-stub>
-  <div>20.05.16-0 (20.06.08-1)</div>
+  <div>20.09.10-0 (20.09.10-3)</div>
 </v-footer-stub>`);
   });
 });

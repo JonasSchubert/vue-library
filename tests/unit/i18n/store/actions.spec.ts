@@ -1,7 +1,7 @@
 import axios, { AxiosStatic } from 'axios';
 import { IVueI18n } from 'vue-i18n';
 import { ActionTree } from 'vuex';
-import { I18nState } from '@/i18n/models';
+import { I18nModuleConfig, I18nState } from '@/i18n/models';
 import { createActions } from '@/i18n/store/actions';
 import { ActionTypes } from '@/i18n/store/types';
 
@@ -27,11 +27,8 @@ describe('createActions', () => {
   describe(`${ActionTypes.getAllTranslations}`, () => {
     test('should call backend as expected and commit with existing returned data', async (done) => {
       // Arrange
-      const actions: ActionTree<I18nState, I18nState> = createActions<I18nState>('/', i18n);
+      const actions: ActionTree<I18nState, I18nState> = createActions<I18nState>({ baseUrl: '/', i18n } as I18nModuleConfig);
       const commit = jest.fn();
-      const getters = {
-        applicationToken: 'token'
-      };
 
       const responseData: any = {
         'de-DE': { message: { 'value': 'Wert' } },
@@ -40,11 +37,11 @@ describe('createActions', () => {
       axios.get = jest.fn(() => Promise.resolve({ data: responseData })) as unknown as AxiosStatic;
 
       // Act
-      (actions[ActionTypes.getAllTranslations] as Function)({ commit, getters })
+      (actions[ActionTypes.getAllTranslations] as Function)({ commit })
         .then(() => {
           // Assert
           expect(axios.get).toHaveBeenCalledTimes(1);
-          expect(axios.get).toHaveBeenCalledWith('/i18n/GetAllIetfTranslations/token');
+          expect(axios.get).toHaveBeenCalledWith('/i18n/GetAllIetfTranslations');
           expect(commit).toHaveBeenCalledTimes(2);
           expect(commit).toHaveBeenCalledWith('setError', { error: undefined });
           expect(commit).toHaveBeenCalledWith('setLocales', {
@@ -59,11 +56,8 @@ describe('createActions', () => {
 
     test('should call backend as expected and commit error with empty returned data', async (done) => {
       // Arrange
-      const actions: ActionTree<I18nState, I18nState> = createActions<I18nState>('/', i18n);
+      const actions: ActionTree<I18nState, I18nState> = createActions<I18nState>({ baseUrl: '/', i18n } as I18nModuleConfig);
       const commit = jest.fn();
-      const getters = {
-        applicationToken: 'token'
-      };
 
       const error: Error = {
         name: 'EmptyI18nAllTranslationsResponse',
@@ -73,11 +67,11 @@ describe('createActions', () => {
       axios.get = jest.fn(() => Promise.resolve({ data: responseData })) as unknown as AxiosStatic;
 
       // Act
-      (actions[ActionTypes.getAllTranslations] as Function)({ commit, getters })
+      (actions[ActionTypes.getAllTranslations] as Function)({ commit })
         .then(() => {
           // Assert
           expect(axios.get).toHaveBeenCalledTimes(1);
-          expect(axios.get).toHaveBeenCalledWith('/i18n/GetAllIetfTranslations/token');
+          expect(axios.get).toHaveBeenCalledWith('/i18n/GetAllIetfTranslations');
           expect(commit).toHaveBeenCalledTimes(2);
           expect(commit).toHaveBeenCalledWith('setError', { error: undefined });
           expect(commit).toHaveBeenCalledWith('setError', { error });
@@ -87,11 +81,8 @@ describe('createActions', () => {
 
     test('should call backend and handle error', async (done) => {
       // Arrange
-      const actions: ActionTree<I18nState, I18nState> = createActions<I18nState>('/', i18n);
+      const actions: ActionTree<I18nState, I18nState> = createActions<I18nState>({ baseUrl: '/', i18n } as I18nModuleConfig);
       const commit = jest.fn();
-      const getters = {
-        applicationToken: 'token'
-      };
 
       const responseError: Error = {
         message: 'message',
@@ -100,11 +91,11 @@ describe('createActions', () => {
       axios.get = jest.fn(() => Promise.reject(responseError));
 
       // Act
-      (actions[ActionTypes.getAllTranslations] as Function)({ commit, getters })
+      (actions[ActionTypes.getAllTranslations] as Function)({ commit })
         .then(() => {
           // Assert
           expect(axios.get).toHaveBeenCalledTimes(1);
-          expect(axios.get).toHaveBeenCalledWith('/i18n/GetAllIetfTranslations/token');
+          expect(axios.get).toHaveBeenCalledWith('/i18n/GetAllIetfTranslations');
           expect(commit).toHaveBeenCalledTimes(2);
           expect(commit).toHaveBeenCalledWith('setError', { error: undefined });
           expect(commit).toHaveBeenCalledWith('setError', {
@@ -121,22 +112,19 @@ describe('createActions', () => {
   describe(`${ActionTypes.getAvailableLocales}`, () => {
     test('should call backend as expected and commit with existing returned data and dispatch available locale', async (done) => {
       // Arrange
-      const actions: ActionTree<I18nState, I18nState> = createActions<I18nState>('/', i18n);
+      const actions: ActionTree<I18nState, I18nState> = createActions<I18nState>({ baseUrl: '/', i18n } as I18nModuleConfig);
       const commit = jest.fn();
       const dispatch = jest.fn();
-      const getters = {
-        applicationToken: 'token'
-      };
 
       const responseData: string[] = ['de-DE', 'en-GB'];
       axios.get = jest.fn(() => Promise.resolve({ data: responseData })) as unknown as AxiosStatic;
 
       // Act
-      (actions[ActionTypes.getAvailableLocales] as Function)({ commit, dispatch, getters })
+      (actions[ActionTypes.getAvailableLocales] as Function)({ commit, dispatch })
         .then(() => {
           // Assert
           expect(axios.get).toHaveBeenCalledTimes(1);
-          expect(axios.get).toHaveBeenCalledWith('/i18n/GetAvailableIetf/token');
+          expect(axios.get).toHaveBeenCalledWith('/i18n/GetAvailableIetf');
           expect(commit).toHaveBeenCalledTimes(2);
           expect(commit).toHaveBeenCalledWith('setError', { error: undefined });
           expect(commit).toHaveBeenCalledWith('setAvailableLocales', { availableLocales: ['de-DE', 'en-GB'] });
@@ -148,22 +136,19 @@ describe('createActions', () => {
 
     test('should call backend as expected and commit with existing returned data and dispatch new locale', async (done) => {
       // Arrange
-      const actions: ActionTree<I18nState, I18nState> = createActions<I18nState>('/', i18n);
+      const actions: ActionTree<I18nState, I18nState> = createActions<I18nState>({ baseUrl: '/', i18n } as I18nModuleConfig);
       const commit = jest.fn();
       const dispatch = jest.fn();
-      const getters = {
-        applicationToken: 'token'
-      };
 
       const responseData: string[] = ['de-DE', 'es-ES'];
       axios.get = jest.fn(() => Promise.resolve({ data: responseData })) as unknown as AxiosStatic;
 
       // Act
-      (actions[ActionTypes.getAvailableLocales] as Function)({ commit, dispatch, getters })
+      (actions[ActionTypes.getAvailableLocales] as Function)({ commit, dispatch })
         .then(() => {
           // Assert
           expect(axios.get).toHaveBeenCalledTimes(1);
-          expect(axios.get).toHaveBeenCalledWith('/i18n/GetAvailableIetf/token');
+          expect(axios.get).toHaveBeenCalledWith('/i18n/GetAvailableIetf');
           expect(commit).toHaveBeenCalledTimes(3);
           expect(commit).toHaveBeenCalledWith('setError', { error: undefined });
           expect(commit).toHaveBeenCalledWith('setAvailableLocales', { availableLocales: ['de-DE', 'es-ES'] });
@@ -176,12 +161,9 @@ describe('createActions', () => {
 
     test('should call backend as expected and commit error with empty returned data', async (done) => {
       // Arrange
-      const actions: ActionTree<I18nState, I18nState> = createActions<I18nState>('/', i18n);
+      const actions: ActionTree<I18nState, I18nState> = createActions<I18nState>({ baseUrl: '/', i18n } as I18nModuleConfig);
       const commit = jest.fn();
       const dispatch = jest.fn();
-      const getters = {
-        applicationToken: 'token'
-      };
 
       const error: Error = {
         name: 'EmptyI18nAvailableLocalesResponse',
@@ -191,11 +173,11 @@ describe('createActions', () => {
       axios.get = jest.fn(() => Promise.resolve({ data: responseData })) as unknown as AxiosStatic;
 
       // Act
-      (actions[ActionTypes.getAvailableLocales] as Function)({ commit, dispatch, getters })
+      (actions[ActionTypes.getAvailableLocales] as Function)({ commit, dispatch })
         .then(() => {
           // Assert
           expect(axios.get).toHaveBeenCalledTimes(1);
-          expect(axios.get).toHaveBeenCalledWith('/i18n/GetAvailableIetf/token');
+          expect(axios.get).toHaveBeenCalledWith('/i18n/GetAvailableIetf');
           expect(commit).toHaveBeenCalledTimes(2);
           expect(commit).toHaveBeenCalledWith('setError', { error: undefined });
           expect(commit).toHaveBeenCalledWith('setError', { error });
@@ -205,12 +187,9 @@ describe('createActions', () => {
 
     test('should call backend and handle error', async (done) => {
       // Arrange
-      const actions: ActionTree<I18nState, I18nState> = createActions<I18nState>('/', i18n);
+      const actions: ActionTree<I18nState, I18nState> = createActions<I18nState>({ baseUrl: '/', i18n } as I18nModuleConfig);
       const commit = jest.fn();
       const dispatch = jest.fn();
-      const getters = {
-        applicationToken: 'token'
-      };
 
       const responseError: Error = {
         message: 'message',
@@ -219,11 +198,11 @@ describe('createActions', () => {
       axios.get = jest.fn(() => Promise.reject(responseError));
 
       // Act
-      (actions[ActionTypes.getAvailableLocales] as Function)({ commit, dispatch, getters })
+      (actions[ActionTypes.getAvailableLocales] as Function)({ commit, dispatch })
         .then(() => {
           // Assert
           expect(axios.get).toHaveBeenCalledTimes(1);
-          expect(axios.get).toHaveBeenCalledWith('/i18n/GetAvailableIetf/token');
+          expect(axios.get).toHaveBeenCalledWith('/i18n/GetAvailableIetf');
           expect(commit).toHaveBeenCalledTimes(2);
           expect(commit).toHaveBeenCalledWith('setError', { error: undefined });
           expect(commit).toHaveBeenCalledWith('setError', {
@@ -240,11 +219,8 @@ describe('createActions', () => {
   describe(`${ActionTypes.getLocaleTranslations}`, () => {
     test('should call backend as expected and commit with existing returned data', async (done) => {
       // Arrange
-      const actions: ActionTree<I18nState, I18nState> = createActions<I18nState>('/', i18n);
+      const actions: ActionTree<I18nState, I18nState> = createActions<I18nState>({ baseUrl: '/', i18n } as I18nModuleConfig);
       const commit = jest.fn();
-      const getters = {
-        applicationToken: 'token'
-      };
       const ietfTag = 'de-DE';
 
       const responseData: any = {
@@ -253,11 +229,11 @@ describe('createActions', () => {
       axios.get = jest.fn(() => Promise.resolve({ data: responseData })) as unknown as AxiosStatic;
 
       // Act
-      (actions[ActionTypes.getLocaleTranslations] as Function)({ commit, getters }, { ietfTag })
+      (actions[ActionTypes.getLocaleTranslations] as Function)({ commit }, { ietfTag })
         .then(() => {
           // Assert
           expect(axios.get).toHaveBeenCalledTimes(1);
-          expect(axios.get).toHaveBeenCalledWith('/i18n/GetIetfTranslations/token/de-DE');
+          expect(axios.get).toHaveBeenCalledWith('/i18n/GetIetfTranslations/de-DE');
           expect(commit).toHaveBeenCalledTimes(3);
           expect(commit).toHaveBeenCalledWith('setError', { error: undefined });
           expect(commit).toHaveBeenCalledWith('updateLocales', { locale: 'de-DE', translations: { message: { 'value': 'Wert' } } });
@@ -268,11 +244,8 @@ describe('createActions', () => {
 
     test('should call backend as expected and commit error with empty returned data', async (done) => {
       // Arrange
-      const actions: ActionTree<I18nState, I18nState> = createActions<I18nState>('/', i18n);
+      const actions: ActionTree<I18nState, I18nState> = createActions<I18nState>({ baseUrl: '/', i18n } as I18nModuleConfig);
       const commit = jest.fn();
-      const getters = {
-        applicationToken: 'token'
-      };
       const ietfTag = 'es-ES';
 
       const error: Error = {
@@ -283,11 +256,11 @@ describe('createActions', () => {
       axios.get = jest.fn(() => Promise.resolve({ data: responseData })) as unknown as AxiosStatic;
 
       // Act
-      (actions[ActionTypes.getLocaleTranslations] as Function)({ commit, getters }, { ietfTag })
+      (actions[ActionTypes.getLocaleTranslations] as Function)({ commit }, { ietfTag })
         .then(() => {
           // Assert
           expect(axios.get).toHaveBeenCalledTimes(1);
-          expect(axios.get).toHaveBeenCalledWith('/i18n/GetIetfTranslations/token/es-ES');
+          expect(axios.get).toHaveBeenCalledWith('/i18n/GetIetfTranslations/es-ES');
           expect(commit).toHaveBeenCalledTimes(2);
           expect(commit).toHaveBeenCalledWith('setError', { error: undefined });
           expect(commit).toHaveBeenCalledWith('setError', { error });
@@ -297,11 +270,8 @@ describe('createActions', () => {
 
     test('should call backend and handle error', async (done) => {
       // Arrange
-      const actions: ActionTree<I18nState, I18nState> = createActions<I18nState>('/', i18n);
+      const actions: ActionTree<I18nState, I18nState> = createActions<I18nState>({ baseUrl: '/', i18n } as I18nModuleConfig);
       const commit = jest.fn();
-      const getters = {
-        applicationToken: 'token'
-      };
       const ietfTag = 'de-DE';
 
       const responseError: Error = {
@@ -311,11 +281,11 @@ describe('createActions', () => {
       axios.get = jest.fn(() => Promise.reject(responseError));
 
       // Act
-      (actions[ActionTypes.getLocaleTranslations] as Function)({ commit, getters }, { ietfTag })
+      (actions[ActionTypes.getLocaleTranslations] as Function)({ commit }, { ietfTag })
         .then(() => {
           // Assert
           expect(axios.get).toHaveBeenCalledTimes(1);
-          expect(axios.get).toHaveBeenCalledWith('/i18n/GetIetfTranslations/token/de-DE');
+          expect(axios.get).toHaveBeenCalledWith('/i18n/GetIetfTranslations/de-DE');
           expect(commit).toHaveBeenCalledTimes(2);
           expect(commit).toHaveBeenCalledWith('setError', { error: undefined });
           expect(commit).toHaveBeenCalledWith('setError', {

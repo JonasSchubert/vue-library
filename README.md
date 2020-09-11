@@ -2,12 +2,12 @@
 
  A shared library for my vue applications
 
-[![Version](https://img.shields.io/badge/Version-20.06.08--1-blue.svg)](./src/)
+[![Version](https://img.shields.io/badge/Version-20.09.10--3-blue.svg)](./src/)
 
-[![Statements](https://img.shields.io/badge/Statements-86.89%25-green.svg)](./tests/unit/)
-[![Branch](https://img.shields.io/badge/Branch-66.67%25-yellow.svg)](./tests/unit/)
-[![Functions](https://img.shields.io/badge/Functions-83.09%25-green.svg)](./tests/unit/)
-[![Lines](https://img.shields.io/badge/Lines-86.69%25-green.svg)](./tests/unit/)
+[![Statements](https://img.shields.io/badge/Statements-83.46%25-green.svg)](./tests/unit/)
+[![Branch](https://img.shields.io/badge/Branch-65.52%25-yellow.svg)](./tests/unit/)
+[![Functions](https://img.shields.io/badge/Functions-75%25-yellow.svg)](./tests/unit/)
+[![Lines](https://img.shields.io/badge/Lines-83.29%25-green.svg)](./tests/unit/)
 
 ### NPM Scripts
 

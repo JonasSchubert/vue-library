@@ -26,9 +26,11 @@ $newVersionJson = "$newDate-$newPatch"
 (Get-Content package.json) -replace $oldVersionJson, $newVersionJson | Out-File -encoding ASCII package.json
 (Get-Content package-lock.json) -replace $oldVersionJson, $newVersionJson | Out-File -encoding ASCII package-lock.json
 (Get-Content src\version.json) -replace $oldVersionJson, $newVersionJson | Out-File -encoding ASCII src\version.json
+(Get-Content tests\unit\core\controls\app-footer\app-footer.spec.ts) -replace $oldVersionJson, $newVersionJson | Out-File -encoding ASCII tests\unit\core\controls\app-footer\app-footer.spec.ts
 
 git add package.json
 git add package-lock.json
 git add src\version.json
+git add tests\unit\core\controls\app-footer\app-footer.spec.ts
 
-git commit -m "[script][version] bumps version to $newVersionJson"
+git commit -m "chore: bumps version to $newVersionJson"

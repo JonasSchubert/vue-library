@@ -6,6 +6,7 @@ import {
   ActionTypes, GetterTypes, LocalStorageTypes, MutationTypes
 } from './types';
 
+// eslint-diable-next-line @typescript-eslint/explicit-module-boundary-types
 export const createActions = <T>(appName: string, vuetify: any): ActionTree<LocalStorageState, T> => ({
   [ActionTypes.loadHistory]({ commit }): void {
     const rawHistory: string | null = localStorage.getItem(`${appName}${LocalStorageTypes.history}`);

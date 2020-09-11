@@ -355,3 +355,5 @@ MigrationBackup/
 # My custom
 
 /coverage
+*.js
+*.js.map

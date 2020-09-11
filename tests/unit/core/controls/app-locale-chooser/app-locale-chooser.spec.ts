@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import { createLocalVue, shallowMount } from '@vue/test-utils';
 import VueI18n from 'vue-i18n';
 import Vuex, { Store } from 'vuex';
@@ -27,7 +28,7 @@ describe('AppLocaleChooser', () => {
   test('renders defined', () => {
     // Assert
     expect(getMountedComponent(AppLocaleChooser, {}).html()).toBe(`<v-menu-stub opendelay=\"0\" closedelay=\"0\" contentclass=\"\" maxwidth=\"auto\" nudgebottom=\"0\" nudgeleft=\"0\" nudgeright=\"0\" nudgetop=\"0\" nudgewidth=\"0\" openonclick=\"true\" closeonclick=\"true\" closeoncontentclick=\"true\" maxheight=\"auto\" offsety=\"true\" origin=\"top left\" transition=\"v-menu-transition\">
-  <v-list-stub tag=\"div\" tile=\"true\">
+  <v-list-stub tag=\"div\">
     <v-list-item-group-stub value=\"0\" activeclass=\"v-item--active\">
       <v-list-item-stub activeclass=\"\" ripple=\"true\" tag=\"div\">
         <v-list-item-title-stub>message.de-DE (message.de-DE-native)</v-list-item-title-stub>

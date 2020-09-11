@@ -1,4 +1,4 @@
-/* eslint-disable no-underscore-dangle */
+/* eslint-disable camelcase, no-underscore-dangle */
 
 import VueRouter, { Route, RawLocation } from 'vue-router';
 import { Store } from 'vuex';
@@ -23,8 +23,7 @@ const handle = <TState extends BaseAuthenticateState>(element: GaHTMLElement, bi
   const allowedUserRoles: UserRole[] = binding.value;
   const existingUserRols: UserRole[] = store.getters[`${ModuleType}/${GetterTypes.userRoles}`] ?? [];
 
-  if (allowedUserRoles.filter((allowedUserRole: UserRole) => existingUserRols.includes(allowedUserRole)).length === 0) {
-    // eslint-disable-next-line @typescript-eslint/camelcase
+  if (allowedUserRoles.filter((allowedUserRole: UserRole) => !existingUserRols.includes(allowedUserRole)).length) {
     element.__ga_authentication_store__ = {
       onclick: element.onclick,
       style: element.style
@@ -37,16 +36,15 @@ const handle = <TState extends BaseAuthenticateState>(element: GaHTMLElement, bi
     element.onclick = element.__ga_authentication_store__.onclick;
     Object.assign(element.style, element.__ga_authentication_store__.style);
 
-    // eslint-disable-next-line @typescript-eslint/camelcase
     element.__ga_authentication_store__ = undefined;
   }
 };
 
 export default {
+  // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
   install<TState extends BaseAuthenticateState>(Vue: any, { router, store }: RouterPluginOptions<TState>): void {
     Vue.directive('ga-authentication', {
       bind: (element: GaHTMLElement, binding: any): void => {
-        // eslint-disable-next-line @typescript-eslint/camelcase
         element.__ga_authentication_watch__ = store.watch((state: TState) => state.authenticate.data, () => handle(element, binding, store));
         handle(element, binding, store);
       },
@@ -56,15 +54,15 @@ export default {
       unbind: (element: GaHTMLElement): void => element.__ga_authentication_watch__ && element.__ga_authentication_watch__()
     });
 
-    router.beforeEach((to: Route, _from: Route, next: (to?: RawLocation | false | ((vm: Vue) => any) | void) => void): any => {
+    router.beforeEach((to: Route, _from: Route, next: (toRoute?: RawLocation | false | ((vm: Vue) => any) | void) => void): any => {
       const userRoles: UserRole[] = store.getters[`${ModuleType}/${GetterTypes.userRoles}`] ?? [];
       if (!!store.state.authenticate
         && !store.state.authenticate.data?.token
-        && (userRoles.length === 0 || userRoles.includes(UserRole.Null))
+        && (!userRoles.length || userRoles.includes(UserRole.Null))
         && to.path !== '/login') {
         next('/login');
       } else if (to.meta.needsLogin
-        && to.meta.allowedUserRoles.filter((allowedUserRole: UserRole) => userRoles.includes(allowedUserRole)).length === 0) {
+        && to.meta.allowedUserRoles.filter((allowedUserRole: UserRole) => !userRoles.includes(allowedUserRole)).length) {
         next('/no-permission');
       } else {
         next();

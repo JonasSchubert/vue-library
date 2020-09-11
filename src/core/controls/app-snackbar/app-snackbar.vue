@@ -22,8 +22,11 @@
 <script lang="ts">
 import Vue from "vue";
 import { Component } from "vue-property-decorator";
-import { EventBus } from "../../bus";
-import { defaultSnackbarConfig, SnackbarConfig, SnackbarEvents } from "./index";
+// eslint-disable-next-line import/named
+import { snackbarCommunicationBus } from "./snackbar";
+import { defaultSnackbarConfig } from "./snackbar.constants";
+import { SnackbarConfig } from "./snackbar-config";
+import { SnackbarEvents } from "./snackbar-events.enum";
 
 @Component({
   name: "app-snackbar",
@@ -34,19 +37,25 @@ import { defaultSnackbarConfig, SnackbarConfig, SnackbarEvents } from "./index";
 export default class AppSnackbar extends Vue {
   open = false;
 
-  mounted() {
-    EventBus.$on(SnackbarEvents.hide, () => this.hide());
-    EventBus.$on(SnackbarEvents.show, (config: SnackbarConfig) => this.show(config));
+  mounted(): void {
+    snackbarCommunicationBus.subscribe(SnackbarEvents.hide, () => this.hide());
+    snackbarCommunicationBus.subscribe(SnackbarEvents.show, (config: SnackbarConfig) => this.show(config));
   }
 
-  hide() {
+  // eslint-disable-next-line class-methods-use-this
+  beforeDestroy(): void{
+    snackbarCommunicationBus.unsubscribe(SnackbarEvents.hide);
+    snackbarCommunicationBus.unsubscribe(SnackbarEvents.show);
+  }
+
+  hide(): void {
     Object.assign(this.$data, {
       ...defaultSnackbarConfig,
       open: false
     });
   }
 
-  show(config: SnackbarConfig) {
+  show(config: SnackbarConfig): void {
     this.hide();
     setTimeout(() => Object.assign(this.$data, {
       ...defaultSnackbarConfig,

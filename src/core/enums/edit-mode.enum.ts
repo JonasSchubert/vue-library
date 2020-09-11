@@ -1,3 +1,4 @@
+// eslint-disable-next-line no-shadow
 export enum EditMode {
   Null = 0,
   Add = 1,

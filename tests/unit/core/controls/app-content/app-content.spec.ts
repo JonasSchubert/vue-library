@@ -11,7 +11,7 @@ const getMountedComponent = (Component: any, propsData: any) => shallowMount(Com
 describe('AppContent', () => {
   test('renders as expected', () => {
     // Assert
-    expect(getMountedComponent(AppContent, {}).html()).toBe(`<v-content-stub tag=\"main\">
+    expect(getMountedComponent(AppContent, {}).html()).toBe(`<v-main-stub tag=\"main\">
   <v-container-stub tag=\"div\" fluid=\"true\" class=\"fill-height pa-0\">
     <v-row-stub tag=\"div\" align=\"center\" justify=\"center\" class=\"fill-height\">
       <transition-stub name=\"fade\" mode=\"out-in\">
@@ -19,6 +19,6 @@ describe('AppContent', () => {
       </transition-stub>
     </v-row-stub>
   </v-container-stub>
-</v-content-stub>`);
+</v-main-stub>`);
   });
 });

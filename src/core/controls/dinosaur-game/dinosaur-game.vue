@@ -1,3 +1,5 @@
+<!-- eslint-disable max-len -->
+
 <template>
   <div id="t" class="offline">
     <div id="messageBox" class="sendmessage">
@@ -50,6 +52,7 @@ export default class DinosaurGame extends Vue {
 
     document.onkeydown = (event: KeyboardEvent) => {
       if ((event ?? window.event).keyCode === keyCodes.space) {
+        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
         document.getElementById("messageBox")!.style.visibility = "hidden";
       }
     };

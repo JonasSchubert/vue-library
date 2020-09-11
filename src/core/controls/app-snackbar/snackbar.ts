@@ -1,11 +1,14 @@
-import { EventBus } from '../../bus';
+// eslint-disable-next-line import/named
+import { createCommunicationBus } from '../../bus';
 import { SnackbarConfig } from './snackbar-config';
 import { SnackbarEvents } from './snackbar-events.enum';
 import { defaultSnackbarConfig } from './snackbar.constants';
 
+export const snackbarCommunicationBus = createCommunicationBus();
+
 export const snackbar = {
-  error: (config: SnackbarConfig) => {
-    EventBus.$emit(SnackbarEvents.show, {
+  error: (config: SnackbarConfig): void => {
+    snackbarCommunicationBus.publish(SnackbarEvents.show, {
       ...defaultSnackbarConfig,
       color: 'error',
       icon: 'mdi-alert-circle',
@@ -13,9 +16,9 @@ export const snackbar = {
       ...config
     });
   },
-  hide: () => EventBus.$emit(SnackbarEvents.hide),
-  info: (config: SnackbarConfig) => {
-    EventBus.$emit(SnackbarEvents.show, {
+  hide: (): void => snackbarCommunicationBus.publish(SnackbarEvents.hide),
+  info: (config: SnackbarConfig): void => {
+    snackbarCommunicationBus.publish(SnackbarEvents.show, {
       ...defaultSnackbarConfig,
       color: 'info',
       icon: 'mdi-information',
@@ -23,14 +26,14 @@ export const snackbar = {
       ...config
     });
   },
-  open: (config: SnackbarConfig) => {
-    EventBus.$emit(SnackbarEvents.show, {
+  open: (config: SnackbarConfig): void => {
+    snackbarCommunicationBus.publish(SnackbarEvents.show, {
       ...defaultSnackbarConfig,
       ...config
     });
   },
-  success: (config: SnackbarConfig) => {
-    EventBus.$emit(SnackbarEvents.show, {
+  success: (config: SnackbarConfig): void => {
+    snackbarCommunicationBus.publish(SnackbarEvents.show, {
       ...defaultSnackbarConfig,
       color: 'success',
       icon: 'mdi-check',
@@ -38,8 +41,8 @@ export const snackbar = {
       ...config
     });
   },
-  warning: (config: SnackbarConfig) => {
-    EventBus.$emit(SnackbarEvents.show, {
+  warning: (config: SnackbarConfig): void => {
+    snackbarCommunicationBus.publish(SnackbarEvents.show, {
       ...defaultSnackbarConfig,
       color: 'warning',
       icon: 'mdi-alert',

@@ -1,6 +1,6 @@
 import { IVueI18n, LocaleMessageObject, LocaleMessages } from 'vue-i18n';
 import { MutationTree } from 'vuex';
-import { I18nState } from '@/i18n/models';
+import { I18nModuleConfig, I18nState } from '@/i18n/models';
 import { createMutations } from '@/i18n/store/mutations';
 import { MutationTypes } from '@/i18n/store/types';
 
@@ -9,7 +9,6 @@ describe('createMutations', () => {
   let mutations: MutationTree<I18nState>;
   let state: I18nState;
 
-  const applicationToken = 'applicationToken';
   const availableLocales: string[] = ['de-DE', 'en-GB'];
   const currentLocale = 'en-GB';
   const locales: LocaleMessages = {
@@ -32,10 +31,9 @@ describe('createMutations', () => {
       setLocaleMessage: jest.fn()
     } as unknown as IVueI18n;
 
-    mutations = createMutations(i18n);
+    mutations = createMutations({ i18n } as I18nModuleConfig);
 
     state = {
-      applicationToken,
       availableLocales,
       currentLocale,
       error: undefined,

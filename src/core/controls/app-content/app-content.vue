@@ -1,5 +1,5 @@
 <template>
-  <v-content>
+  <v-main>
     <v-container class="fill-height pa-0" fluid>
       <v-row align="center" class="fill-height" justify="center">
         <transition name="fade" mode="out-in">
@@ -7,7 +7,7 @@
         </transition>
       </v-row>
     </v-container>
-  </v-content>
+  </v-main>
 </template>
 
 <script lang="ts">

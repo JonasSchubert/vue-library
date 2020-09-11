@@ -1,9 +1,9 @@
-import { IVueI18n, LocaleMessageObject, LocaleMessages } from 'vue-i18n';
+import { LocaleMessageObject, LocaleMessages } from 'vue-i18n';
 import { MutationTree } from 'vuex';
-import { I18nState } from '../models';
+import { I18nModuleConfig, I18nState } from '../models';
 import { MutationTypes } from './types';
 
-export const createMutations = (i18n: IVueI18n): MutationTree<I18nState> => ({
+export const createMutations = ({ i18n }: I18nModuleConfig): MutationTree<I18nState> => ({
   [MutationTypes.setAvailableLocales]: (state: I18nState, { availableLocales }: { availableLocales: string[] }): void => {
     state.availableLocales = availableLocales;
   },

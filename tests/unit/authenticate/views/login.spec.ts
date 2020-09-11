@@ -37,7 +37,7 @@ describe('Login', () => {
         test('should return true if value exists', () => {
           // Arrange
           const value = 'I exist!';
-          const passwordRules: ((value: string) => string | boolean | VueI18n.LocaleMessages)[] = (wrapper.vm as any).rules.password;
+          const passwordRules: ((password: string) => string | boolean | VueI18n.LocaleMessages)[] = (wrapper.vm as any).rules.password;
 
           // Act
           let actual;
@@ -55,7 +55,7 @@ describe('Login', () => {
         test('should return string "Required" if value does not exist', () => {
           // Arrange
           const value = '';
-          const passwordRules: ((value: string) => string | boolean | VueI18n.LocaleMessages)[] = (wrapper.vm as any).rules.password;
+          const passwordRules: ((password: string) => string | boolean | VueI18n.LocaleMessages)[] = (wrapper.vm as any).rules.password;
 
           // Act
           let actual;
@@ -75,7 +75,7 @@ describe('Login', () => {
         test('should return true if value exists', () => {
           // Arrange
           const value = 'I exist!';
-          const userNameRules: ((value: string) => string | boolean | VueI18n.LocaleMessages)[] = (wrapper.vm as any).rules.userName;
+          const userNameRules: ((userName: string) => string | boolean | VueI18n.LocaleMessages)[] = (wrapper.vm as any).rules.userName;
 
           // Act
           let actual;
@@ -93,7 +93,7 @@ describe('Login', () => {
         test('should return string "Required" if value does not exist', () => {
           // Arrange
           const value = '';
-          const userNameRules: ((value: string) => string | boolean | VueI18n.LocaleMessages)[] = (wrapper.vm as any).rules.userName;
+          const userNameRules: ((userName: string) => string | boolean | VueI18n.LocaleMessages)[] = (wrapper.vm as any).rules.userName;
 
           // Act
           let actual;

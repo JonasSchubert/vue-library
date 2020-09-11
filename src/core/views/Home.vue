@@ -36,7 +36,7 @@ export default class Home extends Vue {
 
   lastRoutes!: any[];
 
-  mounted() {
+  mounted(): void {
     if (this.lastRoutes.length === 1) {
       this.$router.push(this.lastRoutes[0].path);
     }

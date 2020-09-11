@@ -3,6 +3,7 @@ import { controls } from '../controls';
 import { dialogs } from '../dialogs';
 
 export default {
+  // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
   install(Vue: any): void {
     controls.forEach((control: VueConstructor<Vue>) => {
       if ((control as any).extendOptions.name) {
