@@ -1,5 +1,5 @@
 <template>
-  <v-card max-width="520" min-width="520" @keydown="onKeydown">
+  <v-card max-width="520" @keydown="onKeydown">
     <v-form v-model="valid">
       <v-container>
         <v-row>

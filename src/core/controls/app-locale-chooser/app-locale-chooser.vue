@@ -9,7 +9,7 @@
     </template>
     <v-list>
       <v-list-item-group v-model="locale">
-        <v-list-item ripple v-for="item in availableLocales" :key="`Locale_${item}`">
+        <v-list-item ripple v-for="(item, index) in availableLocales" :key="`Locale_${item}_${index}`">
           <v-list-item-title>{{ `${$t(`message.${item}`)} (${$t(`message.${item}-native`)})` }}</v-list-item-title>
         </v-list-item>
       </v-list-item-group>

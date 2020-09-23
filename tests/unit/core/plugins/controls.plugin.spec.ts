@@ -8,7 +8,7 @@ describe('plugins/controls', () => {
     controlsPlugin.install(VueMock);
 
     // Assert
-    expect(VueMock.component).toHaveBeenCalledTimes(9);
+    expect(VueMock.component).toHaveBeenCalledTimes(10);
     expect(VueMock.component).toHaveBeenCalledWith('app-bar', expect.any(Function));
     expect(VueMock.component).toHaveBeenCalledWith('app-bar-btn', expect.any(Function));
     expect(VueMock.component).toHaveBeenCalledWith('app-bar-menu', expect.any(Function));
@@ -18,5 +18,6 @@ describe('plugins/controls', () => {
     expect(VueMock.component).toHaveBeenCalledWith('app-snackbar', expect.any(Function));
     expect(VueMock.component).toHaveBeenCalledWith('confirm-dialog', expect.any(Function));
     expect(VueMock.component).toHaveBeenCalledWith('dinosaur-game', expect.any(Function));
+    expect(VueMock.component).toHaveBeenCalledWith('audio-player', expect.any(Function));
   });
 });
