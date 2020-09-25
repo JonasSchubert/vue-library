@@ -12,7 +12,10 @@
 
     <slot></slot>
 
-    <div>{{ version }} ({{ libVersion }})</div>
+    <div class="d-flex">
+      <div>{{ version }}</div>
+      <div class="d-none d-sm-flex ml-1">({{ libVersion }})</div>
+    </div>
   </v-footer>
 </template>
 

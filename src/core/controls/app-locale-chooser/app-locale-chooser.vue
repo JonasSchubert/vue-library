@@ -3,7 +3,7 @@
     <template v-slot:activator="{ on }">
       <v-btn class="subtitle-1" ripple text v-on="on">
         <v-icon>mdi-translate</v-icon>
-        <div class="d-sm-none d-md-flex mx-2">{{ $t(`message.${$i18n.locale}`) }}</div>
+        <div class="d-none d-sm-flex mx-2">{{ $t(`message.${$i18n.locale}`) }}</div>
         <v-icon>mdi-chevron-down</v-icon>
       </v-btn>
     </template>

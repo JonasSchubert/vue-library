@@ -2,7 +2,7 @@
 
  A shared library for my vue applications
 
-[![Version](https://img.shields.io/badge/Version-20.09.23--1-blue.svg)](./src/)
+[![Version](https://img.shields.io/badge/Version-20.09.24--1-blue.svg)](./src/)
 
 [![Statements](https://img.shields.io/badge/Statements-65.94%25-yellow.svg)](./tests/unit/)
 [![Branch](https://img.shields.io/badge/Branch-46.22%25-red.svg)](./tests/unit/)
@@ -24,7 +24,7 @@ npm run update-local-version  // Updates the version for this application in thi
 
 ## Contributors
 
-| [<img alt="JonasSchubert" src="https://avatars0.githubusercontent.com/u/21952813?v=4&s=117" width="117"/>](http://192.168.178.21:6080/JonasSchubert) |
+| [<img alt="JonasSchubert" src="https://avatars0.githubusercontent.com/u/21952813?v=4&s=117" width="117"/>](https://github.com/JonasSchubert) |
 | :---------------------------------------------------------------------------------------------------------------------------------------: |
 | [Jonas Schubert](https://github.com/JonasSchubert) |
 

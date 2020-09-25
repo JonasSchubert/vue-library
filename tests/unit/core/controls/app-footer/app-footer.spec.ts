@@ -58,7 +58,10 @@ describe('AppFooter', () => {
             return deepEqual(a[p], b[p]);
           });
         }\" input-value=\"true\" class=\"mt-0\"></v-switch-stub>
-  <div>20.09.10-0 (20.09.23-1)</div>
+  <div class="d-flex">
+    <div>20.09.10-0</div>
+    <div class="d-none d-sm-flex ml-1">(20.09.24-1)</div>
+  </div>
 </v-footer-stub>`);
   });
 });

@@ -3,7 +3,7 @@
     <template v-slot:activator="{ on }">
       <v-btn text v-on="on">
         <v-icon :color="iconColorMain()">{{ icon }}</v-icon>
-        <div :style="textStyleMain()" class="d-sm-none d-md-flex ml-2">{{ text }}</div>
+        <div :style="textStyleMain()" class="d-none d-sm-flex ml-2">{{ text }}</div>
         <v-icon>mdi-chevron-down</v-icon>
       </v-btn>
     </template>

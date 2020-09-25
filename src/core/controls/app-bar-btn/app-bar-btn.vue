@@ -1,7 +1,7 @@
 <template>
   <v-btn text :to="to">
     <v-icon :color="iconColor()">{{ icon }}</v-icon>
-    <div :style="textStyle()" class="d-sm-none d-md-flex ml-2">{{ text }}</div>
+    <div :style="textStyle()" class="d-none d-sm-flex ml-2">{{ text }}</div>
   </v-btn>
 </template>
 
