@@ -60,7 +60,7 @@ describe('AppFooter', () => {
         }\" input-value=\"true\" class=\"mt-0\"></v-switch-stub>
   <div class="d-flex">
     <div>20.09.10-0</div>
-    <div class="d-none d-sm-flex ml-1">(20.09.24-1)</div>
+    <div class="d-none d-sm-flex ml-1">(20.10.02-0)</div>
   </div>
 </v-footer-stub>`);
   });

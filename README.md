@@ -2,12 +2,12 @@
 
  A shared library for my vue applications
 
-[![Version](https://img.shields.io/badge/Version-20.09.24--1-blue.svg)](./src/)
+[![Version](https://img.shields.io/badge/Version-20.10.02--0-blue.svg)](./src/)
 
-[![Statements](https://img.shields.io/badge/Statements-65.94%25-yellow.svg)](./tests/unit/)
+[![Statements](https://img.shields.io/badge/Statements-68.52%25-yellow.svg)](./tests/unit/)
 [![Branch](https://img.shields.io/badge/Branch-46.22%25-red.svg)](./tests/unit/)
-[![Functions](https://img.shields.io/badge/Functions-62.58%25-yellow.svg)](./tests/unit/)
-[![Lines](https://img.shields.io/badge/Lines-65.63%25-yellow.svg)](./tests/unit/)
+[![Functions](https://img.shields.io/badge/Functions-59.3%25-yellow.svg)](./tests/unit/)
+[![Lines](https://img.shields.io/badge/Lines-67.82%25-yellow.svg)](./tests/unit/)
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 [![Paypal](https://img.shields.io/badge/paypal-donate-blue.svg)](https://www.paypal.me/GuepardoApps)
