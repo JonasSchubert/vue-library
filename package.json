@@ -1,6 +1,6 @@
 {
   "name": "vue-library",
-  "version": "20.10.02-0",
+  "version": "20.10.04-0",
   "description": "",
   "author": {
     "name": "Jonas Schubert",
@@ -13,10 +13,10 @@
   },
   "license": "MIT",
   "scripts": {
+    "bump-version": "@powershell -NoProfile -ExecutionPolicy Unrestricted -Command ./scripts/bump-version.ps1",
     "lint": "vue-cli-service lint",
     "pre-push": "npm run lint && npm run test:unit",
-    "test:unit": "vue-cli-service test:unit",
-    "update-local-version": "@powershell -NoProfile -ExecutionPolicy Unrestricted -Command ./scripts/update-local-version.ps1"
+    "test:unit": "vue-cli-service test:unit"
   },
   "repository": {
     "type": "git",

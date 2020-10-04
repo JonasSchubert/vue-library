@@ -2,7 +2,7 @@
 
  A shared library for my vue applications
 
-[![Version](https://img.shields.io/badge/Version-20.10.02--0-blue.svg)](./src/)
+[![Version](https://img.shields.io/badge/Version-20.10.04--0-blue.svg)](./src/)
 
 [![Statements](https://img.shields.io/badge/Statements-68.52%25-yellow.svg)](./tests/unit/)
 [![Branch](https://img.shields.io/badge/Branch-46.22%25-red.svg)](./tests/unit/)
