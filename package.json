@@ -23,7 +23,7 @@
     "url": "https://github.com/JonasSchubert/vue-library.git"
   },
   "dependencies": {
-    "axios": "^0.20.0",
+    "axios": "^0.21.1",
     "chart.js": "^2.9.3",
     "core-js": "^3.6.5",
     "vue": "^2.6.12",
